@@ -1,0 +1,13 @@
+<p>
+  customer-list works!
+</p>
+
+<ul class="customers">
+  <li *ngFor="let customer of customers"
+  [class.selected]="customer === selectedCustomer"
+    (click)="onSelect(customer)">
+    <a routerLink="../member-form">
+    <span class="badge">{{customer.firstName}}{{customer.lastName}}</span> 
+  </a>
+  </li>
+</ul>
