@@ -1,8 +1,8 @@
-<p>
+<!-- <p>
   customer-list works!
-</p>
+</p> -->
 
-<ul class="customers">
+<!-- <ul class="customers">
   <li *ngFor="let customer of customers"
   [class.selected]="customer === selectedCustomer"
     (click)="onSelect(customer)">
@@ -10,4 +10,10 @@
     <span class="badge">{{customer.firstName}}{{customer.lastName}}</span> 
   </a>
   </li>
-</ul>
+</ul> -->
+
+<div class="ui container">
+  <div class="ui grid">
+    <app-customer-item *ngFor="let customer of customers" [customer]="customer"></app-customer-item>
+  </div>
+</div>

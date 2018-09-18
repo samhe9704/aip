@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
+import { CustomerItemComponent } from './customer-item/customer-item.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,9 @@ const routes: Routes = [
 
   {path: 'customer-list', component: CustomerListComponent },
 
-  {path: 'member-form', component: JoinMemberFormComponent}
+  {path: 'member-form', component: JoinMemberFormComponent},
+
+  {path: 'customer-item', component: CustomerItemComponent}
 ];
 
 @NgModule({

@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
+import { CustomerItemComponent } from './customer-item/customer-item.component';
+import {SuiModule} from 'ng2-semantic-ui';
+
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { JoinMemberFormComponent } from './join-member-form/join-member-form.com
     RegisterComponent,
     LoginComponent,
     CustomerListComponent,
-    JoinMemberFormComponent
+    JoinMemberFormComponent,
+    CustomerItemComponent
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SuiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
