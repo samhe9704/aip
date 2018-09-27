@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 // const index = require('../server/route/index');
 require('dotenv').config();
@@ -32,5 +32,7 @@ app.get('/customers', (req, res) => {
         return res.json(docs);
     })
 })
-
+app.get('*', (req, res) => {
+    return res.sendFile(path.join(__dirname, ''))
+  });
 // app.use('/',index);
