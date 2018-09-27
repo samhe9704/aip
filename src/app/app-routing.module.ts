@@ -20,6 +20,9 @@ const routes: Routes = [
   {path: 'member-form', component: JoinMemberFormComponent},
 
   {path: 'customer-item', component: CustomerItemComponent}
+
+  // {path: 'customers', component: CustomerListComponent},
+
 ];
 
 @NgModule({

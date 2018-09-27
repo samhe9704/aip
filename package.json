@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "start": "run-s build start:server",
+    "start:server": "node src/server/index.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
