@@ -3,6 +3,7 @@ import { Customer } from '../customer';
 import { CUSTOMERS } from '../mock-customer';
 
 import { CustomerService } from '../customer.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-customer-list',
@@ -11,14 +12,14 @@ import { CustomerService } from '../customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers: Customer[];
+  customers: Observable<Customer[]>;
 
   selectedCustomer: Customer;
 
   constructor(private customerService: CustomerService) { }
 
   getCustomers(): void {
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+    this.customers = this.customerService.getCustomers();
   }
 
   ngOnInit() {
