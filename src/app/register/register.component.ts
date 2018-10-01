@@ -3,7 +3,6 @@ import { CustomerService } from '../customer.service';
 import { NgForm } from '@angular/forms';
 import { Customer } from '../customer';
 
-// import { Observable } from 'rxjs';
 
 
 @Component({
@@ -23,21 +22,21 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  // onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
 
-  //   this.loading = true;
+    this.loading = true;
 
-  //   const formInput = Object.assign({}, form.value);
+    const formInput = Object.assign({}, form.value);
 
-  //   const customer: Customer = {
-  //     firstName: formInput.firstName,
-  //     lastName: formInput.lastName,
-  //     phone: formInput.phone,
-  //     email: formInput.email
-  //   };
+    const customer: Customer = {
+      firstName: formInput.firstName,
+      lastName: formInput.lastName,
+      phone: formInput.phone,
+      email: formInput.email
+    };
 
-  //   this.customerService.postCustomers(this.newCustomer)
-  //   .subscribe(newCustomer => this.customers.push(newCustomer));
-  // }
+    this.customerService.postCustomers(customer)
+    .subscribe(newCustomer => this.customers.push(newCustomer));
+  }
 
 }
