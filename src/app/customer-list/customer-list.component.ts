@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
-import { CUSTOMERS } from '../mock-customer';
+// import { CUSTOMERS } from '../mock-customer';
 
 import { CustomerService } from '../customer.service';
 import { Observable } from 'rxjs';

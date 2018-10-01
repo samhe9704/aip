@@ -4,14 +4,14 @@ import { CUSTOMERS } from './mock-customer';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-//import 'rxjs/add/operator/map';
-//import { Http, Response } from '@angular/http';
+// import 'rxjs/add/operator/map';
+// import { Http, Response } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  uri = "http://localhost:4200/customers";
+  uri = 'http://localhost:4200/customers';
   // getCustomers(): Observable<Customer[]> {
     customers: Customer[];
   //  return of(CUSTOMERS);
@@ -35,6 +35,6 @@ export class CustomerService {
 }
 
 
-  
+
   constructor(private http: HttpClient) { }
 }

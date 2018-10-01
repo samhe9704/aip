@@ -1,17 +1,3 @@
-<!-- <p>
-  customer-list works!
-</p> -->
-
-<!-- <ul class="customers">
-  <li *ngFor="let customer of customers"
-  [class.selected]="customer === selectedCustomer"
-    (click)="onSelect(customer)">
-    <a routerLink="../member-form">
-    <span class="badge">{{customer.firstName}}{{customer.lastName}}</span> 
-  </a>
-  </li>
-</ul> -->
-
 <div class="ui container">
   <div class="ui grid">
     <app-customer-item *ngFor="let customer of customers | async" [customer]="customer"></app-customer-item>

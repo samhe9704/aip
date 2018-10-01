@@ -9,17 +9,17 @@ import { CustomerItemComponent } from './customer-item/customer-item.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/register', pathMatch: 'full' },
+  {path: '', redirectTo: 'register', pathMatch: 'full' },
 
   {path: 'register', component: RegisterComponent},
 
   {path: 'login', component: LoginComponent },
 
-  {path: 'customer-list', component: CustomerListComponent },
+  {path: 'customers', component: CustomerListComponent }
 
-  {path: 'member-form', component: JoinMemberFormComponent},
+// {path: 'member-form', component: JoinMemberFormComponent}
 
-  {path: 'customer-item', component: CustomerItemComponent}
+ // {path: 'customer-item', component: CustomerItemComponent}
 
   // {path: 'customers', component: CustomerListComponent},
 

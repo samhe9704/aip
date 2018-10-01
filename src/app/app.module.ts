@@ -10,7 +10,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
-import {SuiModule} from 'ng2-semantic-ui';
+import { SuiModule } from 'ng2-semantic-ui';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 
 @NgModule({
@@ -20,8 +21,8 @@ import {SuiModule} from 'ng2-semantic-ui';
     LoginComponent,
     CustomerListComponent,
     JoinMemberFormComponent,
-    CustomerItemComponent
-    
+    CustomerItemComponent,
+    MenuBarComponent
   ],
   imports: [
     BrowserModule,
