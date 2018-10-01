@@ -1,5 +1,5 @@
 <div class="register-container" >
-  <Form class="ui big form">
+  <Form class="ui big form"  #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="field">
       <label>First Name</label>
       <input type="text" name="firstName" placeholder="First Name" ngModel>
@@ -17,7 +17,7 @@
       <input type="text" name="email" placeholder="Email" ngModel>
     </div>
 
-    <a routerLink="../login"><button type="submit" class="ui primary button float right floated">Regster</button></a>
+    <button type="submit" class="ui primary button float right floated">Regster</button>
     
   </Form>
 </div>

@@ -1,4 +1,4 @@
-export class Customer {
+export interface Customer {
     // constructor(fName:string, lName:string, phone:string, email:string){
     //     this.firstName = fName;
     //     this.lastName = lName;

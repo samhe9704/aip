@@ -12,6 +12,7 @@ import { JoinMemberFormComponent } from './join-member-form/join-member-form.com
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { CustomerService } from './customer.service';
 
 
 @NgModule({
@@ -26,12 +27,12 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    SuiModule
+    SuiModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

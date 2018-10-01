@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
-// import { CUSTOMERS } from '../mock-customer';
 
 import { CustomerService } from '../customer.service';
 import { Observable } from 'rxjs';
@@ -26,8 +25,8 @@ export class CustomerListComponent implements OnInit {
     this.getCustomers();
   }
 
-  onSelect(customer: Customer): void {
-    this.selectedCustomer = customer;
-  }
+  // onSelect(customer: Customer): void {
+  //   this.selectedCustomer = customer;
+  // }
 
 }
