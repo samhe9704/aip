@@ -4,52 +4,65 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-// const index = require('../server/route/index');
+const buildExpress = require('./express');
+
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(bodyParser.json());
+
 require('dotenv').config();
 
-let database;
+//let database;
 
-MongoClient.connect(process.env.DB_CONN, (err, db) => {
+MongoClient.connect(process.env.DB_CONN, (err, client) => {
 
     console.log('connected to mongodb...');
 
-    app.listen(4200, () => {
-        const myAwesomeDB = db.db('gym-app-aip');
-       // database = myAwesomeDB.collection('theCollectionIwantToAccess');
-       
+    buildExpress(client).listen(4200, () => {
+        const myAwesomeDB = client.db();
 
-        database = myAwesomeDB;
+        //client = myAwesomeDB;
         console.log('listenning on port 4200...');
 
     });
 });
-//get all the customer cards
-app.get('/customers', (req, res) => {
-    const customersCollection = database.collection('customers');
+// //get all the customer cards
+// app.get('/customers', (req, res) => {
+//     const customersCollection = database.collection('customers');
 
-    customersCollection.find({}).toArray((err, docs) => {
-        return res.json(docs);
-    })
-});
+//     customersCollection.find({}).toArray((err, docs) => {
+//         return res.json(docs);
+//     })
+// });
 
-//register a new customer card
-app.post('/register', (req, res,) => {
-    const user = req.body;
+// //register a new customer card
+// app.post('/register', (req, res) => {
+//     const customer = req.body;
 
-    const customersCollection = database.collection('customers');
+//     const customersCollection = database.collection('customers');
 
-    customersCollection.insertOne(user, (err, r) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error when inserting new record.'});
-        }
+//     customersCollection.insertOne(customer, (err, r) => {
+//         if (err) {
+//             return res.status(500).json({ error: 'Error when inserting new record.'});
+//         }
 
-        const newCustomer = r.ops[0];
+//         const newCustomer = r.ops[0];
 
-        return res.status(201).json(newCustomer);
-    });
-});
-app.get('*', (req, res) => {
-    return res.sendFile(path.join(__dirname, 'public/index.html'));
-  });
+//         return res.status(201).json(newCustomer);
+//     });
+// });
+// app.get('*', (req, res) => {
+//     return res.sendFile(path.join(__dirname, 'public/index.html'));
+//   });
+
+// app.delete('/customers/:id', (req, res) => {
+//     let query = {_id: req.params.id};
+
+//     const customersCollection = database.collection('customers');
+
+//     customersCollection.remove(query, (err, customer) => {
+//         if(err){
+//         return res.send(err);
+//         }
+//         return res.json(customer);
+//     });
+// });
