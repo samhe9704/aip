@@ -1,35 +1,35 @@
-const express = require('express');
+// const express = require('express');
 
 
 
-function customerRouter(client) {
-const router = express.Router();
+// function customerRouter(client) {
+// const router = express.Router();
 
 
-router.get('/customers', (req, res) => {
-    const customersCollection = client.collection('customers');
+// router.get('/customers', (req, res) => {
+//     const customersCollection = client.collection('customers');
 
-    customersCollection.find({}).toArray((err, docs) => {
-        return res.json(docs);
-    });
-});
+//     customersCollection.find({}).toArray((err, docs) => {
+//         return res.json(docs);
+//     });
+// });
 
-router.post('/register', (req, res) => {
-    const customer = req.body;
+// router.post('/register', (req, res) => {
+//     const customer = req.body;
 
-    const customersCollection = client.collection('customers');
+//     const customersCollection = client.collection('customers');
 
-    customersCollection.insertOne(customer, (err, r) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error when inserting new record.'});
-        };
+//     customersCollection.insertOne(customer, (err, r) => {
+//         if (err) {
+//             return res.status(500).json({ error: 'Error when inserting new record.'});
+//         };
 
-        const newCustomer = r.ops[0];
+//         const newCustomer = r.ops[0];
 
-        return res.status(201).json(newCustomer);
-    });
-});
-return router;
-}
+//         return res.status(201).json(newCustomer);
+//     });
+// });
+// return router;
+// }
 
-module.exports = customerRouter;
+// module.exports = customerRouter;

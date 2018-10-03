@@ -13,6 +13,7 @@ import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CustomerService } from './customer.service';
+import { AuthenticateService } from './authenticate.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { CustomerService } from './customer.service';
     SuiModule,
     FormsModule
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
