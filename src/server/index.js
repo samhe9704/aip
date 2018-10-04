@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 const checkJwt = require('express-jwt');
 
 
-const buildExpress = require('./express');
+//const buildExpress = require('./express');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -31,10 +31,13 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
     });
 });
 
-app.use(checkJwt({ secret: process.env.JWT_SECRET }).unless({ path: '/authenticate'}));
+app.use(checkJwt({ secret: process.env.JWT_SECRET })
+.unless({ path: ['/login','/register']
+          }));
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
+        console.log('no token');
         res.status(401).send({ error: err.message});
     }
 });
@@ -64,7 +67,7 @@ app.post('/register', (req, res) => {
     });
 });
 // authentication 
-app.post('/authenticate', (req, res) => {
+app.post('/login', (req, res) => {
     const user = req.body;
 
     const usersCollection = database.collection('users');
