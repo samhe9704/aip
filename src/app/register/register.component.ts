@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   loading = false;
   newCustomer: Customer;
-  customers: Customer[];
+ // customers: Customer[];
 
   constructor(private customerService: CustomerService) { }
 
@@ -36,7 +36,12 @@ export class RegisterComponent implements OnInit {
     };
 
     this.customerService.postCustomers(customer)
-    .subscribe(newCustomer => this.customers.push(newCustomer));
+    .subscribe(data => {
+      console.log('posting new data');
+      form.reset();
+      this.newCustomer = data;
+      console.log('new data posted');
+    });
   }
 
 }

@@ -240,7 +240,7 @@ var AuthenticateService = /** @class */ (function () {
     function AuthenticateService(router, http) {
         this.router = router;
         this.http = http;
-        this.storageKey = 'customers-jwt';
+        this.storageKey = 'authenticate-jwt';
         this.loginUrl = '/login';
     }
     AuthenticateService.prototype.getAuthorizationOptions = function () {
@@ -266,8 +266,12 @@ var AuthenticateService = /** @class */ (function () {
     AuthenticateService.prototype.isLoggedIn = function () {
         return this.getToken() != null;
     };
+    AuthenticateService.prototype.isLoggedOut = function () {
+        return this.getToken() == null;
+    };
     AuthenticateService.prototype.logOut = function () {
         localStorage.removeItem(this.storageKey);
+        console.log(this.storageKey);
         this.router.navigate(['/login']);
     };
     AuthenticateService = __decorate([
@@ -654,7 +658,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        \r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
+module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
 
 /***/ }),
 
@@ -669,6 +673,7 @@ module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuBarComponent", function() { return MenuBarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _authenticate_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../authenticate.service */ "./src/app/authenticate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -679,10 +684,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MenuBarComponent = /** @class */ (function () {
-    function MenuBarComponent() {
+    function MenuBarComponent(authenticate) {
+        this.authenticate = authenticate;
     }
     MenuBarComponent.prototype.ngOnInit = function () {
+    };
+    MenuBarComponent.prototype.logout = function () {
+        this.authenticate.logOut();
     };
     MenuBarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -690,7 +700,7 @@ var MenuBarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./menu-bar.component.html */ "./src/app/menu-bar/menu-bar.component.html"),
             styles: [__webpack_require__(/*! ./menu-bar.component.css */ "./src/app/menu-bar/menu-bar.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_authenticate_service__WEBPACK_IMPORTED_MODULE_1__["AuthenticateService"]])
     ], MenuBarComponent);
     return MenuBarComponent;
 }());
@@ -717,7 +727,7 @@ module.exports = ".register-container {\r\n    max-width: 500px;\r\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-container\" >\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Phone</label>\r\n      <input type=\"text\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"text\" name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n\r\n    <button type=\"submit\" class=\"ui primary button float right floated\">Register</button>\r\n    \r\n  </form>\r\n</div>"
+module.exports = "<div class=\"register-container\">\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Phone</label>\r\n      <input type=\"text\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"text\" name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\">Register</button>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -745,6 +755,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var RegisterComponent = /** @class */ (function () {
+    // customers: Customer[];
     function RegisterComponent(customerService) {
         this.customerService = customerService;
         this.loading = false;
@@ -762,7 +773,12 @@ var RegisterComponent = /** @class */ (function () {
             email: formInput.email
         };
         this.customerService.postCustomers(customer)
-            .subscribe(function (newCustomer) { return _this.customers.push(newCustomer); });
+            .subscribe(function (data) {
+            console.log('posting new data');
+            form.reset();
+            _this.newCustomer = data;
+            console.log('new data posted');
+        });
     };
     RegisterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

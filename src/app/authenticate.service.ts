@@ -13,7 +13,7 @@ import { Token } from './token';
 })
 export class AuthenticateService {
 
-   storageKey = 'customers-jwt';
+   storageKey = 'authenticate-jwt';
    loginUrl = '/login';
    users: User[];
 
@@ -48,8 +48,13 @@ export class AuthenticateService {
     return this.getToken() != null;
   }
 
+  isLoggedOut() {
+    return this.getToken() == null;
+  }
+
   logOut() {
     localStorage.removeItem(this.storageKey);
+    console.log(this.storageKey);
     this.router.navigate(['/login']);
   }
 }
