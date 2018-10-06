@@ -14,6 +14,8 @@ import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CustomerService } from './customer.service';
 import { AuthenticateService } from './authenticate.service';
+import { PlanListComponent } from './plan-list/plan-list.component';
+import { PlanItemComponent } from './plan-item/plan-item.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { AuthenticateService } from './authenticate.service';
     CustomerListComponent,
     JoinMemberFormComponent,
     CustomerItemComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    PlanListComponent,
+    PlanItemComponent
   ],
   imports: [
     BrowserModule,

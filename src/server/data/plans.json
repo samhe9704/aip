@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Running expert",
+        "time": "5pm - 6pm Tuesday",
+        "coach": "Johny",
+        "content": "Being a running expert! Having a less fat body!",
+        "type": "A"
+    },
+    {
+        "title": "Muscle expert",
+        "time": "7pm - 8pm Thursday",
+        "coach": "Sam",
+        "content": "Being a power expert! Feeling the power of muscle!",
+        "type": "B"
+    },
+    {
+        "title": "Fitting expert",
+        "time": "6pm - 7pm Saturday",
+        "coach": "Sarah",
+        "content": "Being a fitting expert! Fit body is no longer your dream!",
+        "type": "C"
+    }
+]

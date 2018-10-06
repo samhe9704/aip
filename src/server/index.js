@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const checkJwt = require('express-jwt');
@@ -46,9 +47,27 @@ app.get('/customers', (req, res) => {
     const customersCollection = database.collection('customers');
 
     customersCollection.find({}).toArray((err, docs) => {
+        if (err) {
+            return res.send(err);
+        }
+        
         return res.json(docs);
     })
 });
+
+app.get('/customers/:id', (req, res) => {
+    const customersCollection = database.collection('customers');
+
+    customersCollection.findOne({_id: ObjectId(req.params.id)}, (err, docs) => {
+        if (err){
+            console.log('something');
+            res.send(err);
+        }
+        console.log(req.params.id);
+        console.log(docs);
+        res.json(docs);
+    })
+})
 
 //register a new customer card
 app.post('/register', (req, res) => {

@@ -26,6 +26,13 @@
           </a>
       <!-- </div> -->
     </div>
+    <div class="header item">
+      <button class="ui basic button">
+        <i class="user circle outline icon" aria-hidden="true">
+          View Plan
+        </i>
+      </button>
+    </div>
     <div class="right menu" *ngIf="authenticate.isLoggedIn()">
       <button class="ui primary button logout" (click)="logout()">logout</button>
     </div>

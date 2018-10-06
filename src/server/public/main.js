@@ -157,12 +157,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./menu-bar/menu-bar.component */ "./src/app/menu-bar/menu-bar.component.ts");
 /* harmony import */ var _customer_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./customer.service */ "./src/app/customer.service.ts");
 /* harmony import */ var _authenticate_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./authenticate.service */ "./src/app/authenticate.service.ts");
+/* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
+/* harmony import */ var _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plan-item/plan-item.component */ "./src/app/plan-item/plan-item.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -190,7 +194,9 @@ var AppModule = /** @class */ (function () {
                 _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_8__["CustomerListComponent"],
                 _join_member_form_join_member_form_component__WEBPACK_IMPORTED_MODULE_9__["JoinMemberFormComponent"],
                 _customer_item_customer_item_component__WEBPACK_IMPORTED_MODULE_10__["CustomerItemComponent"],
-                _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_12__["MenuBarComponent"]
+                _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_12__["MenuBarComponent"],
+                _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_15__["PlanListComponent"],
+                _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_16__["PlanItemComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -306,7 +312,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <div class=\"extra content\">\r\n      <div class=\"ui two buttons\">\r\n        <button class=\"ui basic green button\">Approve</button>\r\n        <button class=\"ui basic red button\">Decline</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n"
+module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <div class=\"extra content\">\r\n      <div class=\"ui three buttons\">\r\n        <button class=\"ui basic green button\">Approve</button>\r\n        <button class=\"ui basic blue button\">Modify</button>\r\n        <button class=\"ui basic red button\">Decline</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -367,7 +373,7 @@ var CustomerItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container {\r\n  margin-top: 50px;\r\n}\r\n/* .selected {\r\n    background-color: #CFD8DC !important;\r\n    color: white;\r\n  }\r\n  .customers {\r\n    margin: 0 0 2em 0;\r\n    list-style-type: none;\r\n    padding: 0;\r\n    width: 15em;\r\n  }\r\n  .customers li {\r\n    cursor: pointer;\r\n    position: relative;\r\n    left: 0;\r\n    background-color: #EEE;\r\n    margin: .5em;\r\n    padding: .3em 0;\r\n    height: 1.6em;\r\n    border-radius: 4px;\r\n  }\r\n  .customers li.selected:hover {\r\n    background-color: #BBD8DC !important;\r\n    color: white;\r\n  }\r\n  .customers li:hover {\r\n    color: #607D8B;\r\n    background-color: #DDD;\r\n    left: .1em;\r\n  }\r\n  .customers .text {\r\n    position: relative;\r\n    top: -3px;\r\n  }\r\n  .customers .badge {\r\n    display: inline-block;\r\n    font-size: small;\r\n    color: white;\r\n    padding: 0.8em 0.7em 0 0.7em;\r\n    background-color: #607D8B;\r\n    line-height: 1em;\r\n    position: relative;\r\n    left: -1px;\r\n    top: -4px;\r\n    height: 1.8em;\r\n    margin-right: .8em;\r\n    border-radius: 4px 0 0 4px;\r\n  } */\r\n \r\n  "
+module.exports = ".container {\r\n  margin-top: 50px;\r\n}\r\n"
 
 /***/ }),
 
@@ -658,7 +664,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
+module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"header item\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          View Plan\r\n        </i>\r\n      </button>\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
 
 /***/ }),
 
@@ -709,6 +715,132 @@ var MenuBarComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/plan-item/plan-item.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/plan-item/plan-item.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/plan-item/plan-item.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/plan-item/plan-item.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  plan-item works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/plan-item/plan-item.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/plan-item/plan-item.component.ts ***!
+  \**************************************************/
+/*! exports provided: PlanItemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanItemComponent", function() { return PlanItemComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PlanItemComponent = /** @class */ (function () {
+    function PlanItemComponent() {
+    }
+    PlanItemComponent.prototype.ngOnInit = function () {
+    };
+    PlanItemComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-plan-item',
+            template: __webpack_require__(/*! ./plan-item.component.html */ "./src/app/plan-item/plan-item.component.html"),
+            styles: [__webpack_require__(/*! ./plan-item.component.css */ "./src/app/plan-item/plan-item.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PlanItemComponent);
+    return PlanItemComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/plan-list/plan-list.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/plan-list/plan-list.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/plan-list/plan-list.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/plan-list/plan-list.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  plan-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/plan-list/plan-list.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/plan-list/plan-list.component.ts ***!
+  \**************************************************/
+/*! exports provided: PlanListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanListComponent", function() { return PlanListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PlanListComponent = /** @class */ (function () {
+    function PlanListComponent() {
+    }
+    PlanListComponent.prototype.ngOnInit = function () {
+    };
+    PlanListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-plan-list',
+            template: __webpack_require__(/*! ./plan-list.component.html */ "./src/app/plan-list/plan-list.component.html"),
+            styles: [__webpack_require__(/*! ./plan-list.component.css */ "./src/app/plan-list/plan-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PlanListComponent);
+    return PlanListComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/register/register.component.css":
 /*!*************************************************!*\
   !*** ./src/app/register/register.component.css ***!
@@ -727,7 +859,7 @@ module.exports = ".register-container {\r\n    max-width: 500px;\r\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-container\">\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Phone</label>\r\n      <input type=\"text\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"text\" name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\">Register</button>\r\n  </form>\r\n</div>"
+module.exports = "<div class=\"register-container\">\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Phone</label>\r\n      <input type=\"number\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"email\" name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Interested training plan:</label>\r\n          <input type=\"radio\" name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\">Register</button>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -758,19 +890,19 @@ var RegisterComponent = /** @class */ (function () {
     // customers: Customer[];
     function RegisterComponent(customerService) {
         this.customerService = customerService;
-        this.loading = false;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
     RegisterComponent.prototype.onSubmit = function (form) {
+        //  this.loading = true;
         var _this = this;
-        this.loading = true;
         var formInput = Object.assign({}, form.value);
         var customer = {
             firstName: formInput.firstName,
             lastName: formInput.lastName,
             phone: formInput.phone,
-            email: formInput.email
+            email: formInput.email,
+            type: formInput.type
         };
         this.customerService.postCustomers(customer)
             .subscribe(function (data) {
