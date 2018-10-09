@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Plan } from '../plan';
 
 @Component({
   selector: 'app-plan-item',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanItemComponent implements OnInit {
 
+  @Input() plan: Plan;
+  @HostBinding('class') columnClass = 'four wide column';
   constructor() { }
 
   ngOnInit() {

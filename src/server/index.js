@@ -33,7 +33,7 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
 });
 
 app.use(checkJwt({ secret: process.env.JWT_SECRET })
-.unless({ path: ['/login','/register']
+.unless({ path: ['/login','/register','/plans']
           }));
 
 app.use((err, req, res, next) => {
@@ -50,7 +50,6 @@ app.get('/customers', (req, res) => {
         if (err) {
             return res.send(err);
         }
-        
         return res.json(docs);
     })
 });
@@ -111,6 +110,34 @@ app.post('/login', (req, res) => {
             message: 'Authentication done properly',
             token: token
         });
+    });
+});
+//get all the plan cards
+app.get('/plans', (req, res) => {
+    const plansCollection = database.collection('plans');
+
+    plansCollection.find({}).toArray((err, docs) => {
+        if (err) {
+            return res.send(err);
+        }
+        
+        return res.json(docs);
+    })
+});
+//add new plan
+app.post('/add-plan', (req, res) => {
+    const plan = req.body;
+
+    const plansCollection = database.collection('plans');
+
+    plansCollection.insertOne(plan, (err, r) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error when inserting new plan.'});
+        }
+
+        const newPlan = r.ops[0];
+
+        return res.status(201).json(newPlan);
     });
 });
 

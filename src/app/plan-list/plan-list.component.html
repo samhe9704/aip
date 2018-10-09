@@ -1,3 +1,5 @@
-<p>
-  plan-list works!
-</p>
+<div class="ui container">
+     <div class="ui grid">
+       <app-plan-item *ngFor="let plan of plans | async" [plan]="plan"></app-plan-item>
+     </div>
+</div>

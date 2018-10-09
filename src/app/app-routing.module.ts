@@ -4,24 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { PlanListComponent } from './plan-list/plan-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
+import { AddPlanComponent } from './add-plan/add-plan.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'register', pathMatch: 'full' },
+  {path: '', redirectTo: 'plans', pathMatch: 'full' },
 
   {path: 'register', component: RegisterComponent},
 
   {path: 'login', component: LoginComponent },
 
-  {path: 'customers', component: CustomerListComponent }
+  {path: 'customers', component: CustomerListComponent },
 
-// {path: 'member-form', component: JoinMemberFormComponent}
+  {path: 'plans', component: PlanListComponent },
 
- // {path: 'customer-item', component: CustomerItemComponent}
-
-  // {path: 'customers', component: CustomerListComponent},
+  {path: 'add-plan', component: AddPlanComponent }
 
 ];
 

@@ -13,7 +13,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CustomerService {
-  uri = 'http://localhost:4200/customers';
+  uri = '/customers';
   registerUrl = '/register';
 
     customers: Customer[];
@@ -32,7 +32,7 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.uri, this.authenticate.getAuthorizationOptions());
   }
 
-  postCustomers(customer: Customer): Observable<Customer> {
+  postCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.registerUrl, customer, this.httpOptions);
   }
 

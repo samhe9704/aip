@@ -14,8 +14,10 @@ import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CustomerService } from './customer.service';
 import { AuthenticateService } from './authenticate.service';
+import { PlanService } from './plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
+import { AddPlanComponent } from './add-plan/add-plan.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
     CustomerItemComponent,
     MenuBarComponent,
     PlanListComponent,
-    PlanItemComponent
+    PlanItemComponent,
+    AddPlanComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
     SuiModule,
     FormsModule
   ],
-  providers: [CustomerService, AuthenticateService],
+  providers: [CustomerService, AuthenticateService, PlanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,9 +12,7 @@ import { Customer } from '../customer';
 })
 export class RegisterComponent implements OnInit {
 
-  // loading = false;
   newCustomer: Customer;
- // customers: Customer[];
 
   constructor(private customerService: CustomerService) { }
 
@@ -23,8 +21,6 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-
-  //  this.loading = true;
 
     const formInput = Object.assign({}, form.value);
 
@@ -36,7 +32,7 @@ export class RegisterComponent implements OnInit {
       type: formInput.type
     };
 
-    this.customerService.postCustomers(customer)
+    this.customerService.postCustomer(customer)
     .subscribe(data => {
       console.log('posting new data');
       form.reset();

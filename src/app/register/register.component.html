@@ -2,26 +2,29 @@
   <form class="ui big form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <div class="field">
       <label>First Name</label>
-      <input type="text" name="firstName" placeholder="First Name" ngModel>
+      <input type="text" required name="firstName" placeholder="First Name" ngModel>
     </div>
     <div class="field">
       <label>Last Name</label>
-      <input type="text" name="lastName" placeholder="Last Name" ngModel>
+      <input type="text" required name="lastName" placeholder="Last Name" ngModel>
     </div>
+
     <div class="field">
-      <label>Phone</label>
-      <input type="number" maxlength="10" name="phone" placeholder="Phone" ngModel>
+      <label for="phone">Phone</label>
+      <input type="number" required minlength="10" name="phone" placeholder="Phone" ngModel>
     </div>
+
     <div class="field">
       <label>Email</label>
-      <input type="email" name="email" placeholder="Email" ngModel>
+      <input type="email" required name="email" placeholder="Email" ngModel>
     </div>
     <div class="inline fields">
         <label>Interested training plan:</label>
-          <input type="radio" name="type" value="A" ngModel> A-Slim<br>
-          <input type="radio" name="type" value="B" ngModel> B-Muscle<br>
-          <input type="radio" name="type" value="C" ngModel> C-Fitness<br>
+          <input type="radio" required name="type" value="A" ngModel> A-Slim<br>
+          <input type="radio" required name="type" value="B" ngModel> B-Muscle<br>
+          <input type="radio" required name="type" value="C" ngModel> C-Fitness<br>
     </div>
-    <button type="submit" class="ui primary button float right floated">Register</button>
+    <button type="submit" class="ui primary button float right floated"
+    [disabled]="registerForm.invalid">Register</button>
   </form>
 </div>

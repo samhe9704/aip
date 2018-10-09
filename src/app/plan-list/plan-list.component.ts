@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PlanService } from '../plan.service';
+import { Plan } from '../plan';
 
 @Component({
   selector: 'app-plan-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanListComponent implements OnInit {
 
-  constructor() { }
+  plans: Observable<Plan[]>;
+
+  constructor(private planService: PlanService) { }
+
+  getPlans(): void {
+    this.plans = this.planService.getPlans();
+  }
 
   ngOnInit() {
+    return this.getPlans();
   }
 
 }

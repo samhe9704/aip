@@ -2,14 +2,15 @@
   <form class="ui big form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
     <div class="field">
     <label>Username</label>
-    <input type="text" name="username" placeholder="Enter your username" ngModel>
+    <input type="text" required name="username" placeholder="Enter your username" ngModel>
   </div>
   <div class="field">
     <label>Password</label>
-    <input type="password" name="password" placeholder="Enter your password" ngModel>
+    <input type="password" required name="password" placeholder="Enter your password" ngModel>
   </div>
   
-  <button type="submit" class="ui primary button float right floated">Login</button>
+  <button type="submit" class="ui primary button float right floated"
+         [disabled]="loginForm.invalid">Login</button>
   </form>
   </div>
   

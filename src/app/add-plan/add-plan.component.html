@@ -1,0 +1,41 @@
+<div class="add-plan-container">
+  <form class="ui big form" #addPlanForm="ngForm" (ngSubmit)="onSubmit(addPlanForm)"> 
+    <h4 class="ui dividing header">Plan information</h4>
+    <div class="field">
+      <label>Title</label>
+        <input type="text" name="title" required placeholder="Title" ngModel>
+      </div>
+    <div class="field">
+      <label>Time</label>
+      <div class="fields">
+        <div class="three wide field">
+          <label>Start time</label>
+          <input type="time" name="start" required placeholder="Start time" ngModel>
+        </div>
+        <div class="three wide field">
+          <label>End time</label>
+          <input type="time" name="end" required placeholder="End time" ngModel>
+        </div>
+        <div class="six wide field">
+          <label>Week</label>
+          <input type="text" name="week" required placeholder="Week" ngModel>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Coach</label>
+      <input type="text" name="coach" required placeholder="Coach" ngModel>
+    </div>
+    <div class="field">
+      <label>Content</label>
+      <input type="text" name="content" required placeholder="Training plan's content" ngModel>
+    </div>
+    <div class="inline fields">
+        <label>Type of training plan:</label>
+          <input type="radio" required name="type" value="A" ngModel> A-Slim<br>
+          <input type="radio" required name="type" value="B" ngModel> B-Muscle<br>
+          <input type="radio" required name="type" value="C" ngModel> C-Fitness<br>
+    </div>
+    <button type="submit" [disabled]="addPlanForm.invalid" class="ui submit large blue button right floated">Submit</button>
+  </form>
+</div>

@@ -23,6 +23,90 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/add-plan/add-plan.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/add-plan/add-plan.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".add-plan-container {\r\n  max-width: 960px;\r\n  margin: 50px auto;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/add-plan/add-plan.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/add-plan/add-plan.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"add-plan-container\">\n  <form class=\"ui big form\" #addPlanForm=\"ngForm\" (ngSubmit)=\"onSubmit(addPlanForm)\"> \n    <h4 class=\"ui dividing header\">Plan information</h4>\n    <div class=\"field\">\n      <label>Title</label>\n        <input type=\"text\" name=\"title\" required placeholder=\"Title\" ngModel>\n      </div>\n    <div class=\"field\">\n      <label>Time</label>\n      <div class=\"fields\">\n        <div class=\"three wide field\">\n          <label>Start time</label>\n          <input type=\"time\" name=\"start\" required placeholder=\"Start time\" ngModel>\n        </div>\n        <div class=\"three wide field\">\n          <label>End time</label>\n          <input type=\"time\" name=\"end\" required placeholder=\"End time\" ngModel>\n        </div>\n        <div class=\"six wide field\">\n          <label>Week</label>\n          <input type=\"text\" name=\"week\" required placeholder=\"Week\" ngModel>\n        </div>\n      </div>\n    </div>\n    <div class=\"field\">\n      <label>Coach</label>\n      <input type=\"text\" name=\"coach\" required placeholder=\"Coach\" ngModel>\n    </div>\n    <div class=\"field\">\n      <label>Content</label>\n      <input type=\"text\" name=\"content\" required placeholder=\"Training plan's content\" ngModel>\n    </div>\n    <div class=\"inline fields\">\n        <label>Type of training plan:</label>\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\n    </div>\n    <button type=\"submit\" [disabled]=\"addPlanForm.invalid\" class=\"ui submit large blue button right floated\">Submit</button>\n  </form>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/add-plan/add-plan.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/add-plan/add-plan.component.ts ***!
+  \************************************************/
+/*! exports provided: AddPlanComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddPlanComponent", function() { return AddPlanComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _plan_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plan.service */ "./src/app/plan.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AddPlanComponent = /** @class */ (function () {
+    function AddPlanComponent(planService) {
+        this.planService = planService;
+    }
+    AddPlanComponent.prototype.ngOnInit = function () {
+    };
+    AddPlanComponent.prototype.onSubmit = function (form) {
+        var _this = this;
+        var formInput = Object.assign({}, form.value);
+        var plan = {
+            title: formInput.title,
+            time: formInput.start + "-" + formInput.end + " " + formInput.week,
+            coach: formInput.coach,
+            content: formInput.content,
+            type: formInput.type,
+        };
+        this.planService.postPlan(plan)
+            .subscribe(function (data) {
+            console.log('posting new data');
+            form.reset();
+            _this.newPlan = data;
+            console.log('new data posted');
+        });
+    };
+    AddPlanComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-add-plan',
+            template: __webpack_require__(/*! ./add-plan.component.html */ "./src/app/add-plan/add-plan.component.html"),
+            styles: [__webpack_require__(/*! ./add-plan.component.css */ "./src/app/add-plan/add-plan.component.css")]
+        }),
+        __metadata("design:paramtypes", [_plan_service__WEBPACK_IMPORTED_MODULE_1__["PlanService"]])
+    ], AddPlanComponent);
+    return AddPlanComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -38,6 +122,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./customer-list/customer-list.component */ "./src/app/customer-list/customer-list.component.ts");
+/* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
+/* harmony import */ var _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./add-plan/add-plan.component */ "./src/app/add-plan/add-plan.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,14 +135,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
-    { path: '', redirectTo: 'register', pathMatch: 'full' },
+    { path: '', redirectTo: 'plans', pathMatch: 'full' },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_2__["RegisterComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
-    { path: 'customers', component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__["CustomerListComponent"] }
-    // {path: 'member-form', component: JoinMemberFormComponent}
-    // {path: 'customer-item', component: CustomerItemComponent}
-    // {path: 'customers', component: CustomerListComponent},
+    { path: 'customers', component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__["CustomerListComponent"] },
+    { path: 'plans', component: _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_5__["PlanListComponent"] },
+    { path: 'add-plan', component: _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_6__["AddPlanComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -157,14 +244,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./menu-bar/menu-bar.component */ "./src/app/menu-bar/menu-bar.component.ts");
 /* harmony import */ var _customer_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./customer.service */ "./src/app/customer.service.ts");
 /* harmony import */ var _authenticate_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./authenticate.service */ "./src/app/authenticate.service.ts");
-/* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
-/* harmony import */ var _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plan-item/plan-item.component */ "./src/app/plan-item/plan-item.component.ts");
+/* harmony import */ var _plan_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plan.service */ "./src/app/plan.service.ts");
+/* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
+/* harmony import */ var _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./plan-item/plan-item.component */ "./src/app/plan-item/plan-item.component.ts");
+/* harmony import */ var _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./add-plan/add-plan.component */ "./src/app/add-plan/add-plan.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -195,8 +286,9 @@ var AppModule = /** @class */ (function () {
                 _join_member_form_join_member_form_component__WEBPACK_IMPORTED_MODULE_9__["JoinMemberFormComponent"],
                 _customer_item_customer_item_component__WEBPACK_IMPORTED_MODULE_10__["CustomerItemComponent"],
                 _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_12__["MenuBarComponent"],
-                _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_15__["PlanListComponent"],
-                _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_16__["PlanItemComponent"]
+                _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_16__["PlanListComponent"],
+                _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_17__["PlanItemComponent"],
+                _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_18__["AddPlanComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -205,7 +297,7 @@ var AppModule = /** @class */ (function () {
                 ng2_semantic_ui__WEBPACK_IMPORTED_MODULE_11__["SuiModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
             ],
-            providers: [_customer_service__WEBPACK_IMPORTED_MODULE_13__["CustomerService"], _authenticate_service__WEBPACK_IMPORTED_MODULE_14__["AuthenticateService"]],
+            providers: [_customer_service__WEBPACK_IMPORTED_MODULE_13__["CustomerService"], _authenticate_service__WEBPACK_IMPORTED_MODULE_14__["AuthenticateService"], _plan_service__WEBPACK_IMPORTED_MODULE_15__["PlanService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
@@ -468,7 +560,7 @@ var CustomerService = /** @class */ (function () {
     function CustomerService(http, authenticate) {
         this.http = http;
         this.authenticate = authenticate;
-        this.uri = 'http://localhost:4200/customers';
+        this.uri = '/customers';
         this.registerUrl = '/register';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
@@ -479,7 +571,7 @@ var CustomerService = /** @class */ (function () {
     CustomerService.prototype.getCustomers = function () {
         return this.http.get(this.uri, this.authenticate.getAuthorizationOptions());
     };
-    CustomerService.prototype.postCustomers = function (customer) {
+    CustomerService.prototype.postCustomer = function (customer) {
         return this.http.post(this.registerUrl, customer, this.httpOptions);
     };
     CustomerService = __decorate([
@@ -576,7 +668,7 @@ module.exports = ".login-container {\r\n    max-width: 500px;\r\n    margin: 50p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-container\">\r\n  <form class=\"ui big form\" #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit(loginForm)\">\r\n    <div class=\"field\">\r\n    <label>Username</label>\r\n    <input type=\"text\" name=\"username\" placeholder=\"Enter your username\" ngModel>\r\n  </div>\r\n  <div class=\"field\">\r\n    <label>Password</label>\r\n    <input type=\"password\" name=\"password\" placeholder=\"Enter your password\" ngModel>\r\n  </div>\r\n  \r\n  <button type=\"submit\" class=\"ui primary button float right floated\">Login</button>\r\n  </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"login-container\">\r\n  <form class=\"ui big form\" #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit(loginForm)\">\r\n    <div class=\"field\">\r\n    <label>Username</label>\r\n    <input type=\"text\" required name=\"username\" placeholder=\"Enter your username\" ngModel>\r\n  </div>\r\n  <div class=\"field\">\r\n    <label>Password</label>\r\n    <input type=\"password\" required name=\"password\" placeholder=\"Enter your password\" ngModel>\r\n  </div>\r\n  \r\n  <button type=\"submit\" class=\"ui primary button float right floated\"\r\n         [disabled]=\"loginForm.invalid\">Login</button>\r\n  </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -664,7 +756,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"header item\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          View Plan\r\n        </i>\r\n      </button>\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
+module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"header item\">\r\n      <a routerLink=\"../plans\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          View Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    <a routerLink=\"../add-plan\">\r\n      <button class=\"ui basic button\" *ngIf=\"authenticate.isLoggedIn()\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          Add Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
 
 /***/ }),
 
@@ -733,7 +825,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  plan-item works!\n</p>\n"
+module.exports = "\r\n<div class=\"ui cards\">\r\n    <div class=\"card\">\r\n      <div class=\"content\">\r\n       \r\n        <div class=\"header\">\r\n          {{plan.title}}\r\n        </div>\r\n        <div class=\"meta\">\r\n          {{plan.time}}\r\n        </div>\r\n        <div class=\"description\">\r\n          {{plan.content}}\r\n        </div>\r\n      </div>\r\n      <div class=\"extra content\">\r\n        <div class=\"ui three buttons\">\r\n          <button class=\"ui basic green button\">Approve</button>\r\n          <button class=\"ui basic blue button\">Modify</button>\r\n          <button class=\"ui basic red button\">Decline</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    </div>"
 
 /***/ }),
 
@@ -760,9 +852,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var PlanItemComponent = /** @class */ (function () {
     function PlanItemComponent() {
+        this.columnClass = 'four wide column';
     }
     PlanItemComponent.prototype.ngOnInit = function () {
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], PlanItemComponent.prototype, "plan", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostBinding"])('class'),
+        __metadata("design:type", Object)
+    ], PlanItemComponent.prototype, "columnClass", void 0);
     PlanItemComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-plan-item',
@@ -785,7 +886,7 @@ var PlanItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".container {\r\n    margin-top: 50px;\r\n  }"
 
 /***/ }),
 
@@ -796,7 +897,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  plan-list works!\n</p>\n"
+module.exports = "<div class=\"ui container\">\r\n     <div class=\"ui grid\">\r\n       <app-plan-item *ngFor=\"let plan of plans | async\" [plan]=\"plan\"></app-plan-item>\r\n     </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -811,6 +912,7 @@ module.exports = "<p>\n  plan-list works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanListComponent", function() { return PlanListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _plan_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plan.service */ "./src/app/plan.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -821,10 +923,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var PlanListComponent = /** @class */ (function () {
-    function PlanListComponent() {
+    function PlanListComponent(planService) {
+        this.planService = planService;
     }
+    PlanListComponent.prototype.getPlans = function () {
+        this.plans = this.planService.getPlans();
+    };
     PlanListComponent.prototype.ngOnInit = function () {
+        return this.getPlans();
     };
     PlanListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -832,9 +940,66 @@ var PlanListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./plan-list.component.html */ "./src/app/plan-list/plan-list.component.html"),
             styles: [__webpack_require__(/*! ./plan-list.component.css */ "./src/app/plan-list/plan-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_plan_service__WEBPACK_IMPORTED_MODULE_1__["PlanService"]])
     ], PlanListComponent);
     return PlanListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/plan.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/plan.service.ts ***!
+  \*********************************/
+/*! exports provided: PlanService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanService", function() { return PlanService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _authenticate_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./authenticate.service */ "./src/app/authenticate.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PlanService = /** @class */ (function () {
+    function PlanService(http, authenticate) {
+        this.http = http;
+        this.authenticate = authenticate;
+        this.planUrl = '/plans';
+        this.addPlanrUrl = '/add-plan';
+        this.httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+                'Content-Type': 'application/json'
+            })
+        };
+    }
+    PlanService.prototype.getPlans = function () {
+        return this.http.get(this.planUrl, this.authenticate.getAuthorizationOptions());
+    };
+    PlanService.prototype.postPlan = function (plan) {
+        return this.http.post(this.addPlanrUrl, plan, this.authenticate.getAuthorizationOptions());
+    };
+    PlanService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _authenticate_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticateService"]])
+    ], PlanService);
+    return PlanService;
 }());
 
 
@@ -859,7 +1024,7 @@ module.exports = ".register-container {\r\n    max-width: 500px;\r\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-container\">\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Phone</label>\r\n      <input type=\"number\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"email\" name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Interested training plan:</label>\r\n          <input type=\"radio\" name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\">Register</button>\r\n  </form>\r\n</div>"
+module.exports = "<div class=\"register-container\">\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" required name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" required name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label for=\"phone\">Phone</label>\r\n      <input type=\"number\" required minlength=\"10\" name=\"phone\" placeholder=\"Phone\" ngModel>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label>Email</label>\r\n      <input type=\"email\" required name=\"email\" placeholder=\"Email\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Interested training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\"\r\n    [disabled]=\"registerForm.invalid\">Register</button>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -887,14 +1052,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var RegisterComponent = /** @class */ (function () {
-    // customers: Customer[];
     function RegisterComponent(customerService) {
         this.customerService = customerService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
     RegisterComponent.prototype.onSubmit = function (form) {
-        //  this.loading = true;
         var _this = this;
         var formInput = Object.assign({}, form.value);
         var customer = {
@@ -904,7 +1067,7 @@ var RegisterComponent = /** @class */ (function () {
             email: formInput.email,
             type: formInput.type
         };
-        this.customerService.postCustomers(customer)
+        this.customerService.postCustomer(customer)
             .subscribe(function (data) {
             console.log('posting new data');
             form.reset();
