@@ -10,8 +10,8 @@ import { Plan } from './plan';
 })
 export class PlanService {
 
-  planUrl = '/plans';
-  addPlanrUrl = '/add-plan';
+  planUrl = '/api/plans';
+  addPlanrUrl = '/api/add-plan';
 
     plans: Plan[];
 

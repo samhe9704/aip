@@ -41,7 +41,7 @@ module.exports = ".add-plan-container {\r\n  max-width: 960px;\r\n  margin: 50px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-plan-container\">\n  <form class=\"ui big form\" #addPlanForm=\"ngForm\" (ngSubmit)=\"onSubmit(addPlanForm)\"> \n    <h4 class=\"ui dividing header\">Plan information</h4>\n    <div class=\"field\">\n      <label>Title</label>\n        <input type=\"text\" name=\"title\" required placeholder=\"Title\" ngModel>\n      </div>\n    <div class=\"field\">\n      <label>Time</label>\n      <div class=\"fields\">\n        <div class=\"three wide field\">\n          <label>Start time</label>\n          <input type=\"time\" name=\"start\" required placeholder=\"Start time\" ngModel>\n        </div>\n        <div class=\"three wide field\">\n          <label>End time</label>\n          <input type=\"time\" name=\"end\" required placeholder=\"End time\" ngModel>\n        </div>\n        <div class=\"six wide field\">\n          <label>Week</label>\n          <input type=\"text\" name=\"week\" required placeholder=\"Week\" ngModel>\n        </div>\n      </div>\n    </div>\n    <div class=\"field\">\n      <label>Coach</label>\n      <input type=\"text\" name=\"coach\" required placeholder=\"Coach\" ngModel>\n    </div>\n    <div class=\"field\">\n      <label>Content</label>\n      <input type=\"text\" name=\"content\" required placeholder=\"Training plan's content\" ngModel>\n    </div>\n    <div class=\"inline fields\">\n        <label>Type of training plan:</label>\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\n    </div>\n    <button type=\"submit\" [disabled]=\"addPlanForm.invalid\" class=\"ui submit large blue button right floated\">Submit</button>\n  </form>\n</div>\n"
+module.exports = "<div class=\"add-plan-container\">\r\n  <form class=\"ui big form\" #addPlanForm=\"ngForm\" (ngSubmit)=\"onSubmit(addPlanForm)\"> \r\n    <h4 class=\"ui dividing header\">Plan information</h4>\r\n    <div class=\"field\">\r\n      <label>Title</label>\r\n        <input type=\"text\" name=\"title\" required placeholder=\"Title\" ngModel>\r\n      </div>\r\n    <div class=\"field\">\r\n      <label>Time</label>\r\n      <div class=\"fields\">\r\n        <div class=\"three wide field\">\r\n          <label>Start time</label>\r\n          <input type=\"time\" name=\"start\" required placeholder=\"Start time\" ngModel>\r\n        </div>\r\n        <div class=\"three wide field\">\r\n          <label>End time</label>\r\n          <input type=\"time\" name=\"end\" required placeholder=\"End time\" ngModel>\r\n        </div>\r\n        <div class=\"six wide field\">\r\n          <label>Week</label>\r\n          <input type=\"text\" name=\"week\" required placeholder=\"Week\" ngModel>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Coach</label>\r\n      <input type=\"text\" name=\"coach\" required placeholder=\"Coach\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Content</label>\r\n      <input type=\"text\" name=\"content\" required placeholder=\"Training plan's content\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Type of training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" [disabled]=\"addPlanForm.invalid\" class=\"ui submit large blue button right floated\">Submit</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -339,7 +339,7 @@ var AuthenticateService = /** @class */ (function () {
         this.router = router;
         this.http = http;
         this.storageKey = 'authenticate-jwt';
-        this.loginUrl = '/login';
+        this.loginUrl = '/api/login';
     }
     AuthenticateService.prototype.getAuthorizationOptions = function () {
         return {
@@ -404,7 +404,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <div class=\"extra content\">\r\n      <div class=\"ui three buttons\">\r\n        <button class=\"ui basic green button\">Approve</button>\r\n        <button class=\"ui basic blue button\">Modify</button>\r\n        <button class=\"ui basic red button\">Decline</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n"
+module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <div class=\"extra content\">\r\n      <div class=\"ui three buttons\">\r\n        <button class=\"ui basic green button\">Approve</button>\r\n        <button class=\"ui basic blue button\">Modify</button>\r\n        <button class=\"ui basic red button\">Decline</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -476,7 +476,7 @@ module.exports = ".container {\r\n  margin-top: 50px;\r\n}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\"></app-customer-item>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\">\r\n        <!-- <div class=\"extra content\">\r\n            <div class=\"ui three buttons\">\r\n              <button class=\"ui basic green button\">Approve</button>\r\n              <button class=\"ui basic blue button\">Modify</button>\r\n              <button class=\"ui basic red button\">Decline</button>\r\n            </div>\r\n          </div> -->\r\n    </app-customer-item>\r\n    \r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -560,8 +560,8 @@ var CustomerService = /** @class */ (function () {
     function CustomerService(http, authenticate) {
         this.http = http;
         this.authenticate = authenticate;
-        this.uri = '/customers';
-        this.registerUrl = '/register';
+        this.uri = '/api/customers';
+        this.registerUrl = '/api/register';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json'
@@ -979,8 +979,8 @@ var PlanService = /** @class */ (function () {
     function PlanService(http, authenticate) {
         this.http = http;
         this.authenticate = authenticate;
-        this.planUrl = '/plans';
-        this.addPlanrUrl = '/add-plan';
+        this.planUrl = '/api/plans';
+        this.addPlanrUrl = '/api/add-plan';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
                 'Content-Type': 'application/json'

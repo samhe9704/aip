@@ -1,5 +1,14 @@
 <div class="ui container">
   <div class="ui grid">
-    <app-customer-item *ngFor="let customer of customers | async" [customer]="customer"></app-customer-item>
+    <app-customer-item *ngFor="let customer of customers | async" [customer]="customer">
+        <!-- <div class="extra content">
+            <div class="ui three buttons">
+              <button class="ui basic green button">Approve</button>
+              <button class="ui basic blue button">Modify</button>
+              <button class="ui basic red button">Decline</button>
+            </div>
+          </div> -->
+    </app-customer-item>
+    
   </div>
 </div>

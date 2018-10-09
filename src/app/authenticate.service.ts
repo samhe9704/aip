@@ -14,7 +14,7 @@ import { Token } from './token';
 export class AuthenticateService {
 
    storageKey = 'authenticate-jwt';
-   loginUrl = '/login';
+   loginUrl = '/api/login';
    users: User[];
 
   constructor(private router: Router,

@@ -1,35 +1,51 @@
-// const express = require('express');
-// const ObjectId = require('mongodb');
+const express = require('express');
+const ObjectId = require('mongodb');
+const router = express.Router();
 
+//get all the customer cards
+router.get('/customers', (req, res) => {
+    const db = req.app.locals.db;
+    const customersCollection = db.collection('customers');
 
-// function customerRouter(client) {
-// const router = express.Router();
+    customersCollection.find({}).toArray((err, docs) => {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(docs);
+    })
+});
 
+router.get('/customers/:id', (req, res) => {
+    const db = req.app.locals.db;
+    const customersCollection = db.collection('customers');
 
-// router.get('/customers', (req, res) => {
-//     const customersCollection = client.collection('customers');
+    customersCollection.findOne({_id: ObjectId(req.params.id)}, (err, docs) => {
+        if (err){
+            console.log('something');
+            res.send(err);
+        }
+        console.log(req.params.id);
+        console.log(docs);
+        res.json(docs);
+    })
+})
 
-//     customersCollection.find({}).toArray((err, docs) => {
-//         return res.json(docs);
-//     });
-// });
+//register a new customer card
+router.post('/register', (req, res) => {
+    const db = req.app.locals.db;
+    const customer = req.body;
 
-// router.post('/register', (req, res) => {
-//     const customer = req.body;
+    const customersCollection = db.collection('customers');
 
-//     const customersCollection = client.collection('customers');
+    customersCollection.insertOne(customer, (err, r) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error when inserting new record.'});
+        }
 
-//     customersCollection.insertOne(customer, (err, r) => {
-//         if (err) {
-//             return res.status(500).json({ error: 'Error when inserting new record.'});
-//         };
+        const newCustomer = r.ops[0];
 
-//         const newCustomer = r.ops[0];
+        return res.status(201).json(newCustomer);
+    });
+});
 
-//         return res.status(201).json(newCustomer);
-//     });
-// });
-// return router;
-// }
-
-// module.exports = customerRouter;
+module.exports = router;

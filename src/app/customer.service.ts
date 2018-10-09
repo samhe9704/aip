@@ -13,8 +13,8 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CustomerService {
-  uri = '/customers';
-  registerUrl = '/register';
+  uri = '/api/customers';
+  registerUrl = '/api/register';
 
     customers: Customer[];
 
