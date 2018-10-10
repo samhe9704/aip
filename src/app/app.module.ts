@@ -19,6 +19,7 @@ import { PlanListComponent } from './plan-list/plan-list.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
 import { AuthenticateGuard } from './authenticate.guard';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AuthenticateGuard } from './authenticate.guard';
     MenuBarComponent,
     PlanListComponent,
     PlanItemComponent,
-    AddPlanComponent
+    AddPlanComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

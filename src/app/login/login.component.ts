@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(form: NgForm) {
+  onLogin(form: NgForm) {
     const input = form.value;
 
       console.log(input);
@@ -40,6 +40,9 @@ export class LoginComponent implements OnInit {
       console.log(data.token);
 
       this.router.navigate(['/customers']);
+    }, (err) => {
+      window.alert('Incorrect Login details');
+      console.log(err);
     });
   }
 

@@ -42,6 +42,15 @@
       </button>
     </a>
     </div>
+    <div class="header item">
+      <a routerLink="../add-user">
+      <button class="ui basic button">
+        <i class="user circle outline icon" aria-hidden="true">
+          Add User
+        </i>
+      </button>
+      </a>
+    </div>
     <div class="right menu" *ngIf="authenticate.isLoggedIn()">
       <button class="ui primary button logout" (click)="logout()">logout</button>
     </div>

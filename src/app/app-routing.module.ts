@@ -9,6 +9,7 @@ import { JoinMemberFormComponent } from './join-member-form/join-member-form.com
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
 import { AuthenticateGuard } from './authenticate.guard';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
   {path: 'plans', component: PlanListComponent },
 
   {path: 'add-plan', component: AddPlanComponent, canActivate: [AuthenticateGuard] },
+
+  {path: 'add-user', component: AddUserComponent, canActivate: [AuthenticateGuard] },
 
   {path: '**', redirectTo: 'plans' }
 

@@ -39,11 +39,13 @@ router.post('/register', (req, res) => {
 
     customersCollection.insertOne(customer, (err, r) => {
         if (err) {
+            console.log(customer);
+            console.log(customer.firstName);
             return res.status(500).json({ error: 'Error when inserting new record.'});
         }
 
         const newCustomer = r.ops[0];
-
+        
         return res.status(201).json(newCustomer);
     });
 });

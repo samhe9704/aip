@@ -1,0 +1,16 @@
+<div class="add-user-container">
+    <form class="ui big form" #addUserForm="ngForm" (ngSubmit)="onSubmit(addUserForm)">
+      <div class="field">
+      <label>Username</label>
+      <input type="text" required name="username" placeholder="Enter your username" ngModel>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" required name="password" placeholder="Enter your password" ngModel>
+    </div>
+    
+    <button type="submit" class="ui primary button float right floated"
+           [disabled]="addUserForm.invalid">Sign Up</button>
+    </form>
+    </div>
+    

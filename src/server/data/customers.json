@@ -5,10 +5,11 @@
         "phone": "123456",
         "email": "123@356.com"
     },
-    {
-      "firstName": "Eric",
-      "lastName": "Ortiz",
-      "phone": "(902) 758-7304",
-      "email": "eric123@sample.com"
-    }
+        {
+        "firstName": "Eric",
+        "lastName": "Ortiz",
+        "phone": "9027587304",
+        "email": "eric123@sample.com",
+        "type": "A"
+        }
 ]

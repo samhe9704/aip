@@ -1,4 +1,16 @@
 <div class="register-container">
+
+    <div class="ui icon message" *ngIf="newCustomer">
+        <i class="notched check green icon"></i>
+        <i class="close icon" (click)="newCustomer = null"></i>
+        <div class="content">
+          <div class="header">
+            New customer registered!
+          </div>
+          <p>Email: {{newCustomer.email}}</p>
+        </div>
+      </div>
+
   <form class="ui big form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <div class="field">
       <label>First Name</label>
@@ -11,12 +23,22 @@
 
     <div class="field">
       <label for="phone">Phone</label>
-      <input type="number" required minlength="10" name="phone" placeholder="Phone" ngModel>
+      <input id="phone" type="number" class="form-control" required pattern="[0-9]{10}" placeholder="Phone" [(ngModel)]="customer.phone" name="phone" #phone="ngModel">
+      <div [hidden]="phone.valid || phone.pristine"
+      class="alert alert-danger">
+          Phone number must be 10 digits.
+    </div>
     </div>
 
     <div class="field">
-      <label>Email</label>
-      <input type="email" required name="email" placeholder="Email" ngModel>
+      <label for="email">Email</label>
+      <input id="email" type="email" class="form-control" required name="email"
+       pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+       placeholder="Email" [(ngModel)]="customer.email" #email="ngModel">
+       <div [hidden]="email.valid || email.pristine"
+       class="alert alert-danger">
+           Ops!It seems not a good email!
+     </div>
     </div>
     <div class="inline fields">
         <label>Interested training plan:</label>
@@ -28,3 +50,18 @@
     [disabled]="registerForm.invalid">Register</button>
   </form>
 </div>
+<!-- <div>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" >
+    <div>
+      <input type="text" class="form-control" id="name" pattern="[a-z]{4}" required [(ngModel)]="customer.firstName" name="firstName" #firstName="ngModel">
+      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+      SDFSADFLADFSADFSFASDFSD
+      </div>
+    </div>
+
+    <button type="submit" class="ui primary button float right floated"
+    [disabled]="registerForm.invalid">Register</button>
+  </form>
+
+
+</div> -->

@@ -1,4 +1,16 @@
 <div class="add-plan-container">
+
+    <div class="ui icon message" *ngIf="newPlan">
+    <i class="notched check green icon"></i>
+    <i class="close icon" (click)="newPlan = null"></i>
+    <div class="content">
+      <div class="header">
+        New plan added!
+      </div>
+      <p>Title: {{newPlan.title}}</p>
+    </div>
+  </div>
+
   <form class="ui big form" #addPlanForm="ngForm" (ngSubmit)="onSubmit(addPlanForm)"> 
     <h4 class="ui dividing header">Plan information</h4>
     <div class="field">
@@ -10,21 +22,43 @@
       <div class="fields">
         <div class="three wide field">
           <label>Start time</label>
-          <input type="time" name="start" required placeholder="Start time" ngModel>
+          <input type="text" id="start" class="form-control" name="start" 
+          pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}" required 
+          placeholder="Start time" [(ngModel)]="plan.start" #start="ngModel" >
+          <div [hidden]="start.valid || start.pristine"
+             class="alert alert-danger">
+          The start time is invalid.
+          </div>
         </div>
         <div class="three wide field">
-          <label>End time</label>
-          <input type="time" name="end" required placeholder="End time" ngModel>
+          <label>Duration(hr)</label>
+          <input type="text" id="duration" class="form-control" name="duration" required placeholder="duration"
+          pattern="[1-3]{1}" [(ngModel)]="plan.duration" #duration="ngModel">
+          <div [hidden]="duration.valid || duration.pristine"
+             class="alert alert-danger">
+          The duration is unreasonable! please between 1 - 3 hours!!
+          </div>
         </div>
-        <div class="six wide field">
+        <div class="inline fields">
           <label>Week</label>
-          <input type="text" name="week" required placeholder="Week" ngModel>
+          <input type="radio" name="week" value="Monday" required ngModel>Monday<br>
+          <input type="radio" name="week" value="Tuesday" required ngModel>Tuesday<br>
+          <input type="radio" name="week" value="Wednesday" required ngModel>Wednesday<br>
+          <input type="radio" name="week" value="Thursday" required ngModel>Thursday<br>
+          <input type="radio" name="week" value="Friday" required ngModel>Friday<br>
+          <input type="radio" name="week" value="Saturday" required ngModel>Saturday<br>
+          <input type="radio" name="week" value="Sunday" required ngModel>Sunday<br>
         </div>
       </div>
     </div>
     <div class="field">
       <label>Coach</label>
-      <input type="text" name="coach" required placeholder="Coach" ngModel>
+      <input type="text" id="coach" class="form-control" name="coach" required placeholder="Coach"
+      pattern="[A-Z]{1}[a-z]{1，}" [(ngModel)]="plan.coach" #coach="ngModel">
+      <div [hidden]="coach.valid || coach.pristine"
+             class="alert alert-danger">
+          Well...It is not a human name.
+          </div>
     </div>
     <div class="field">
       <label>Content</label>

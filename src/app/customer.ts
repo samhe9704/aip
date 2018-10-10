@@ -1,7 +1,7 @@
 export interface Customer {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-    type: string;
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+    email?: string;
+    type?: string;
 }

@@ -13,6 +13,7 @@ export class AddPlanComponent implements OnInit {
   constructor(private planService: PlanService) { }
 
   newPlan: Plan;
+  plan: Plan = {};
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class AddPlanComponent implements OnInit {
 
       const plan: Plan = {
         title: formInput.title,
-        time: `${formInput.start}-${formInput.end} ${formInput.week}`,
+        time: `Start: ${formInput.start} Last: ${formInput.duration} On: ${formInput.week}`,
         coach: formInput.coach,
         content: formInput.content,
         type: formInput.type,

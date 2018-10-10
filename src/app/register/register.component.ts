@@ -13,6 +13,7 @@ import { Customer } from '../customer';
 export class RegisterComponent implements OnInit {
 
   newCustomer: Customer;
+  customer: Customer = {};
 
   constructor(private customerService: CustomerService) { }
 
@@ -34,11 +35,15 @@ export class RegisterComponent implements OnInit {
 
     this.customerService.postCustomer(customer)
     .subscribe(data => {
-      console.log('posting new data');
+      console.log(data);
+      console.log(data.email);
       form.reset();
       this.newCustomer = data;
       console.log('new data posted');
     });
   }
+  // onSubmit() {
+
+  // }
 
 }

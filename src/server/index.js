@@ -7,12 +7,17 @@ const ObjectId = require('mongodb').ObjectID;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const checkJwt = require('express-jwt');
+const cors = require('cors');
+// const User = require("./data/user");
 
 const customerRouter = require('./route/customerRouter');
 const planRouter = require('./route/planRouter');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use('/api', customerRouter);
 app.use('/api', planRouter);
@@ -36,7 +41,7 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
 });
 
 app.use(checkJwt({ secret: process.env.JWT_SECRET })
-.unless({ path: ['/api/login','/api/register','/api/plans', '/customers', '/login', '/register', '/plans', '/add-plan']
+.unless({ path: ['/api/login','/api/register','/api/plans','/add-user', '/api/add-user', '/customers', '/login', '/register', '/plans', '/add-plan']
           }));
 
 app.use((err, req, res, next) => {
@@ -46,15 +51,57 @@ app.use((err, req, res, next) => {
     }
 });
 
+
+app.post('/api/add-user', (req, res) => {
+    const user = req.body;
+    const password = req.body.password;
+    const usersCollection = database.collection('users');
+        console.log(password);
+        console.log(user);
+        console.log(req.body.Username);
+        const hash = bcrypt.hashSync(password, 10, (err, hash) =>{
+            if (err) {
+                return res.status(500).json({ error: 'Error when hashing'});
+            }
+        });
+
+        req.body.password = hash;
+      
+        usersCollection.insertOne(user, (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ error: 'Error when inserting new record.'});
+            } else {
+               const newUser = result.ops[0];
+               return res.status(201).json(newUser);
+            }
+        })
+    
+    })
+
+
+
+
+
+
 //authentication 
 app.post('/api/login', (req, res) => {
     const user = req.body;
 
     const usersCollection = database.collection('users');
-
+// try {
     usersCollection.findOne({ username: user.username }, (err, result) => {
+        if (err) {
+            return res.status(401).json({
+                message: "login fail"
+            })
+        }
+        
         if(!result) {
-            return res.status(504).json({ error: 'user not found'})
+            return res.status(401).json({
+                error: 'user not found',
+                message: "User not found"
+            })
         }
 
         if(!bcrypt.compareSync(user.password, result.password)) {
@@ -68,11 +115,12 @@ app.post('/api/login', (req, res) => {
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn:'2h'});
 
-        return res.json({
+        return res.status(200).json({
             message: 'Authentication done properly',
             token: token
         });
-    });
+        
+    })
 });
 
 app.get('*', (req, res) => {

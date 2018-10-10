@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthenticateService } from './authenticate.service';
 import { Plan } from './plan';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class PlanService {
 
   planUrl = '/api/plans';
   addPlanrUrl = '/api/add-plan';
+  addUserUrl = '/api/add-user';
 
     plans: Plan[];
 
@@ -28,5 +30,9 @@ export class PlanService {
 
   postPlan(plan: Plan): Observable<Plan> {
     return this.http.post<Plan>(this.addPlanrUrl, plan, this.authenticate.getAuthorizationOptions());
+  }
+
+  postUser(user: User): Observable<User> {
+    return this.http.post<User>(this.addUserUrl, user, this.authenticate.getAuthorizationOptions());
   }
 }
