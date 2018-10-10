@@ -10,7 +10,6 @@ const checkJwt = require('express-jwt');
 
 const customerRouter = require('./route/customerRouter');
 const planRouter = require('./route/planRouter');
-//const buildExpress = require('./express');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -37,7 +36,7 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
 });
 
 app.use(checkJwt({ secret: process.env.JWT_SECRET })
-.unless({ path: ['/api/login','/api/register','/api/plans']
+.unless({ path: ['/api/login','/api/register','/api/plans', '/customers', '/login', '/register', '/plans', '/add-plan']
           }));
 
 app.use((err, req, res, next) => {
@@ -80,15 +79,16 @@ app.get('*', (req, res) => {
     return res.sendFile(path.join(__dirname, 'public/index.html'));
   });
 
-// app.delete('/customers/:id', (req, res) => {
-//     let query = {_id: req.params.id};
+app.delete('/api/customers/:id', (req, res) => {
 
-//     const customersCollection = database.collection('customers');
+    //const db = req.app.locals.db;
+    const customersCollection = database.collection('customers');
 
-//     customersCollection.remove(query, (err, customer) => {
-//         if(err){
-//         return res.send(err);
-//         }
-//         return res.json(customer);
-//     });
-// });
+    customersCollection.deleteOne({ _id : ObjectId(req.params.id)},function(err,customer){
+        if(err){
+        res.send(err);
+        }
+        res.json(customer);
+       });
+   });
+

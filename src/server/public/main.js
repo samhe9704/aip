@@ -124,6 +124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./customer-list/customer-list.component */ "./src/app/customer-list/customer-list.component.ts");
 /* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
 /* harmony import */ var _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./add-plan/add-plan.component */ "./src/app/add-plan/add-plan.component.ts");
+/* harmony import */ var _authenticate_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./authenticate.guard */ "./src/app/authenticate.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -137,13 +138,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     { path: '', redirectTo: 'plans', pathMatch: 'full' },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_2__["RegisterComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
-    { path: 'customers', component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__["CustomerListComponent"] },
+    { path: 'customers', component: _customer_list_customer_list_component__WEBPACK_IMPORTED_MODULE_4__["CustomerListComponent"], canActivate: [_authenticate_guard__WEBPACK_IMPORTED_MODULE_7__["AuthenticateGuard"]] },
     { path: 'plans', component: _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_5__["PlanListComponent"] },
-    { path: 'add-plan', component: _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_6__["AddPlanComponent"] }
+    { path: 'add-plan', component: _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_6__["AddPlanComponent"], canActivate: [_authenticate_guard__WEBPACK_IMPORTED_MODULE_7__["AuthenticateGuard"]] },
+    { path: '**', redirectTo: 'plans' }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -248,12 +251,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plan_list_plan_list_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plan-list/plan-list.component */ "./src/app/plan-list/plan-list.component.ts");
 /* harmony import */ var _plan_item_plan_item_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./plan-item/plan-item.component */ "./src/app/plan-item/plan-item.component.ts");
 /* harmony import */ var _add_plan_add_plan_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./add-plan/add-plan.component */ "./src/app/add-plan/add-plan.component.ts");
+/* harmony import */ var _authenticate_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./authenticate.guard */ "./src/app/authenticate.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -297,11 +302,64 @@ var AppModule = /** @class */ (function () {
                 ng2_semantic_ui__WEBPACK_IMPORTED_MODULE_11__["SuiModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"]
             ],
-            providers: [_customer_service__WEBPACK_IMPORTED_MODULE_13__["CustomerService"], _authenticate_service__WEBPACK_IMPORTED_MODULE_14__["AuthenticateService"], _plan_service__WEBPACK_IMPORTED_MODULE_15__["PlanService"]],
+            providers: [_customer_service__WEBPACK_IMPORTED_MODULE_13__["CustomerService"], _authenticate_service__WEBPACK_IMPORTED_MODULE_14__["AuthenticateService"], _plan_service__WEBPACK_IMPORTED_MODULE_15__["PlanService"], _authenticate_guard__WEBPACK_IMPORTED_MODULE_19__["AuthenticateGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/authenticate.guard.ts":
+/*!***************************************!*\
+  !*** ./src/app/authenticate.guard.ts ***!
+  \***************************************/
+/*! exports provided: AuthenticateGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticateGuard", function() { return AuthenticateGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _authenticate_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./authenticate.service */ "./src/app/authenticate.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthenticateGuard = /** @class */ (function () {
+    function AuthenticateGuard(authenticateService, router) {
+        this.authenticateService = authenticateService;
+        this.router = router;
+    }
+    AuthenticateGuard.prototype.canActivate = function (next, state) {
+        if (this.authenticateService.isLoggedIn()) {
+            return true;
+        }
+        else {
+            this.router.navigate(['/plans']);
+            return false;
+        }
+    };
+    AuthenticateGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_authenticate_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticateService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], AuthenticateGuard);
+    return AuthenticateGuard;
 }());
 
 
@@ -404,7 +462,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <div class=\"extra content\">\r\n      <div class=\"ui three buttons\">\r\n        <button class=\"ui basic green button\">Approve</button>\r\n        <button class=\"ui basic blue button\">Modify</button>\r\n        <button class=\"ui basic red button\">Decline</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  </div>\r\n"
+module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <ng-content select=\"[buttons]\"></ng-content>\r\n  </div>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -476,7 +534,7 @@ module.exports = ".container {\r\n  margin-top: 50px;\r\n}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\">\r\n        <!-- <div class=\"extra content\">\r\n            <div class=\"ui three buttons\">\r\n              <button class=\"ui basic green button\">Approve</button>\r\n              <button class=\"ui basic blue button\">Modify</button>\r\n              <button class=\"ui basic red button\">Decline</button>\r\n            </div>\r\n          </div> -->\r\n    </app-customer-item>\r\n    \r\n  </div>\r\n</div>"
+module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\">\r\n        <div class=\"extra content\" buttons>\r\n            <div class=\"ui three buttons\">\r\n            <button class=\"ui basic green button\">Approve</button>\r\n            <a routerLink=\"/login\"><button class=\"ui basic blue button\">Modify</button></a>\r\n            <button class=\"ui basic red button\" (click)=\"deleteCustomer(customer._id)\">Delete</button>\r\n            </div>\r\n         </div>\r\n    </app-customer-item>\r\n    \r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -512,6 +570,16 @@ var CustomerListComponent = /** @class */ (function () {
     };
     CustomerListComponent.prototype.ngOnInit = function () {
         this.getCustomers();
+    };
+    CustomerListComponent.prototype.deleteCustomer = function (id) {
+        var _this = this;
+        console.log('customer id: ' + id);
+        // this.customerService.deleteCustomer(id).subscribe();
+        this.customerService.deleteCustomer(id).subscribe(function (data) {
+            console.log('esdf');
+            _this.getCustomers();
+        });
+        console.log('blabla');
     };
     CustomerListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -573,6 +641,14 @@ var CustomerService = /** @class */ (function () {
     };
     CustomerService.prototype.postCustomer = function (customer) {
         return this.http.post(this.registerUrl, customer, this.httpOptions);
+    };
+    CustomerService.prototype.deleteCustomer = function (id) {
+        var url = this.uri + "/" + id;
+        console.log(url);
+        return this.http.delete(url, this.authenticate.getAuthorizationOptions());
+        // .pipe(
+        //   catchError(this.handleError('deleteHero'))
+        // );
     };
     CustomerService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -703,6 +779,9 @@ var LoginComponent = /** @class */ (function () {
         this.router = router;
     }
     LoginComponent.prototype.ngOnInit = function () {
+        if (this.authenticate.isLoggedIn()) {
+            this.router.navigate(['./cusomers']);
+        }
     };
     LoginComponent.prototype.onSubmit = function (form) {
         var _this = this;

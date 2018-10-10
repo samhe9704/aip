@@ -48,4 +48,17 @@ router.post('/register', (req, res) => {
     });
 });
 
+// router.delete('/customers/:id', (req, res) => {
+
+//     const db = req.app.locals.db;
+//     const customersCollection = db.collection('customers');
+
+//     customersCollection.deleteOne({ _id : ObjectId(req.params.id)}, (err,customer) => {
+//         if(err){
+//         res.send(err);
+//         }
+//         res.json(customer);
+//        });
+//    });
+
 module.exports = router;

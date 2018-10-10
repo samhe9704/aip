@@ -18,6 +18,7 @@ import { PlanService } from './plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
+import { AuthenticateGuard } from './authenticate.guard';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { AddPlanComponent } from './add-plan/add-plan.component';
     SuiModule,
     FormsModule
   ],
-  providers: [CustomerService, AuthenticateService, PlanService],
+  providers: [CustomerService, AuthenticateService, PlanService, AuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

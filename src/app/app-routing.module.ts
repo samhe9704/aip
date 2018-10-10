@@ -8,6 +8,7 @@ import { PlanListComponent } from './plan-list/plan-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
+import { AuthenticateGuard } from './authenticate.guard';
 
 
 const routes: Routes = [
@@ -17,11 +18,13 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent },
 
-  {path: 'customers', component: CustomerListComponent },
+  {path: 'customers', component: CustomerListComponent, canActivate: [AuthenticateGuard] },
 
   {path: 'plans', component: PlanListComponent },
 
-  {path: 'add-plan', component: AddPlanComponent }
+  {path: 'add-plan', component: AddPlanComponent, canActivate: [AuthenticateGuard] },
+
+  {path: '**', redirectTo: 'plans' }
 
 ];
 

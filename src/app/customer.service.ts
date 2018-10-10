@@ -6,8 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthenticateService } from './authenticate.service';
 import { map, catchError } from 'rxjs/operators';
-// import 'rxjs/add/operator/map';
-// import { Http, Response } from '@angular/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +35,11 @@ export class CustomerService {
     return this.http.post<Customer>(this.registerUrl, customer, this.httpOptions);
   }
 
-  // deleteCustomer (id: number): Observable<{}> {
-  //   const url = `${this.uri}/${id}`; // DELETE api/heroes/42
-  //   return this.http.delete(url, this.httpOptions);
-  //     // .pipe(
-  //     //   catchError(this.handleError('deleteHero'))
-  //     // );
-  // }
+  deleteCustomer (id: string): Observable<{}> {
+    const url = `${this.uri}/${id}`;
+    console.log(url);
+    return this.http.delete(url, this.authenticate.getAuthorizationOptions());
+
+  }
 
 }

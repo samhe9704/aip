@@ -25,8 +25,15 @@ export class CustomerListComponent implements OnInit {
     this.getCustomers();
   }
 
-  // onSelect(customer: Customer): void {
-  //   this.selectedCustomer = customer;
-  // }
+  deleteCustomer(id: string) {
+    console.log('customer id: ' + id);
+   // this.customerService.deleteCustomer(id).subscribe();
+    this.customerService.deleteCustomer(id).subscribe(data => {
+      console.log('esdf');
+      this.getCustomers();
+    });
+
+    console.log('blabla');
+  }
 
 }
