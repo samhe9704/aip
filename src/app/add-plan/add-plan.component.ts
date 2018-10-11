@@ -24,18 +24,18 @@ export class AddPlanComponent implements OnInit {
 
       const plan: Plan = {
         title: formInput.title,
-        time: `Start: ${formInput.start} Last: ${formInput.duration} On: ${formInput.week}`,
-        coach: formInput.coach,
+        time: `Start at: ${formInput.start}  Duration: ${formInput.duration} hour  On: ${formInput.week}`,
+        coach: `Coach:  ${formInput.coach}`,
         content: formInput.content,
         type: formInput.type,
       };
 
       this.planService.postPlan(plan)
       .subscribe(data => {
-        console.log('posting new data');
+     //   console.log('posting new data');
         form.reset();
         this.newPlan = data;
-        console.log('new data posted');
+     //   console.log('new data posted');
       });
     }
 

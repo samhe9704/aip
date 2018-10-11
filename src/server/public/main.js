@@ -41,7 +41,7 @@ module.exports = ".add-plan-container {\r\n  max-width: 960px;\r\n  margin: 50px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-plan-container\">\r\n\r\n    <div class=\"ui icon message\" *ngIf=\"newPlan\">\r\n    <i class=\"notched check green icon\"></i>\r\n    <i class=\"close icon\" (click)=\"newPlan = null\"></i>\r\n    <div class=\"content\">\r\n      <div class=\"header\">\r\n        New plan added!\r\n      </div>\r\n      <p>Title: {{newPlan.title}}</p>\r\n    </div>\r\n  </div>\r\n\r\n  <form class=\"ui big form\" #addPlanForm=\"ngForm\" (ngSubmit)=\"onSubmit(addPlanForm)\"> \r\n    <h4 class=\"ui dividing header\">Plan information</h4>\r\n    <div class=\"field\">\r\n      <label>Title</label>\r\n        <input type=\"text\" name=\"title\" required placeholder=\"Title\" ngModel>\r\n      </div>\r\n    <div class=\"field\">\r\n      <label>Time</label>\r\n      <div class=\"fields\">\r\n        <div class=\"three wide field\">\r\n          <label>Start time</label>\r\n          <input type=\"text\" id=\"start\" class=\"form-control\" name=\"start\" \r\n          pattern=\"([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}\" required \r\n          placeholder=\"Start time\" [(ngModel)]=\"plan.start\" #start=\"ngModel\" >\r\n          <div [hidden]=\"start.valid || start.pristine\"\r\n             class=\"alert alert-danger\">\r\n          The start time is invalid.\r\n          </div>\r\n        </div>\r\n        <div class=\"three wide field\">\r\n          <label>Duration(hr)</label>\r\n          <input type=\"text\" id=\"duration\" class=\"form-control\" name=\"duration\" required placeholder=\"duration\"\r\n          pattern=\"[1-3]{1}\" [(ngModel)]=\"plan.duration\" #duration=\"ngModel\">\r\n          <div [hidden]=\"duration.valid || duration.pristine\"\r\n             class=\"alert alert-danger\">\r\n          The duration is unreasonable! please between 1 - 3 hours!!\r\n          </div>\r\n        </div>\r\n        <div class=\"inline fields\">\r\n          <label>Week</label>\r\n          <input type=\"radio\" name=\"week\" value=\"Monday\" required ngModel>Monday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Tuesday\" required ngModel>Tuesday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Wednesday\" required ngModel>Wednesday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Thursday\" required ngModel>Thursday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Friday\" required ngModel>Friday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Saturday\" required ngModel>Saturday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Sunday\" required ngModel>Sunday<br>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Coach</label>\r\n      <input type=\"text\" id=\"coach\" class=\"form-control\" name=\"coach\" required placeholder=\"Coach\"\r\n      pattern=\"[A-Z]{1}[a-z]{1，}\" [(ngModel)]=\"plan.coach\" #coach=\"ngModel\">\r\n      <div [hidden]=\"coach.valid || coach.pristine\"\r\n             class=\"alert alert-danger\">\r\n          Well...It is not a human name.\r\n          </div>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Content</label>\r\n      <input type=\"text\" name=\"content\" required placeholder=\"Training plan's content\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Type of training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" [disabled]=\"addPlanForm.invalid\" class=\"ui submit large blue button right floated\">Submit</button>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"add-plan-container\">\r\n\r\n    <div class=\"ui icon message\" *ngIf=\"newPlan\">\r\n    <i class=\"notched check green icon\"></i>\r\n    <i class=\"close icon\" (click)=\"newPlan = null\"></i>\r\n    <div class=\"content\">\r\n      <div class=\"header\">\r\n        New plan added!\r\n      </div>\r\n      <p>Title: {{newPlan.title}}</p>\r\n    </div>\r\n  </div>\r\n\r\n  <form class=\"ui big form\" #addPlanForm=\"ngForm\" (ngSubmit)=\"onSubmit(addPlanForm)\"> \r\n    <h4 class=\"ui dividing header\">Plan information</h4>\r\n    <div class=\"field\">\r\n      <label>Title</label>\r\n        <input type=\"text\" name=\"title\" required placeholder=\"Title\" ngModel>\r\n      </div>\r\n    <div class=\"field\">\r\n        <h4 class=\"ui dividing header\">Date & Time</h4>\r\n      <div class=\"fields\">\r\n        <div class=\"three wide field\">\r\n          <label>Start time</label>\r\n          <input type=\"text\" id=\"start\" class=\"form-control\" name=\"start\" \r\n          pattern=\"([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}\" required \r\n          placeholder=\"Start time\" [(ngModel)]=\"plan.start\" #start=\"ngModel\" >\r\n          <div [hidden]=\"start.valid || start.pristine\"\r\n             class=\"alert alert-danger\">\r\n          Please enter the time in xx:xx.\r\n          </div>\r\n        </div>\r\n        <div class=\"three wide field\">\r\n          <label>Duration(hr)</label>\r\n          <input type=\"text\" id=\"duration\" class=\"form-control\" name=\"duration\" required placeholder=\"duration\"\r\n          pattern=\"[1-3]{1}\" [(ngModel)]=\"plan.duration\" #duration=\"ngModel\">\r\n          <div [hidden]=\"duration.valid || duration.pristine\"\r\n             class=\"alert alert-danger\">\r\n             <div class=\"ui negative message\">\r\n                <div class=\"text\">\r\n              duration between 1 - 3 hours!!\r\n                </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        </div>\r\n        <div class=\"fields\">\r\n        <div class=\"inline fields\">\r\n          <label>Week</label>\r\n          <input type=\"radio\" name=\"week\" value=\"Monday\" required ngModel>Monday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Tuesday\" required ngModel>Tuesday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Wednesday\" required ngModel>Wednesday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Thursday\" required ngModel>Thursday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Friday\" required ngModel>Friday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Saturday\" required ngModel>Saturday<br>\r\n          <input type=\"radio\" name=\"week\" value=\"Sunday\" required ngModel>Sunday<br>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Coach</label>\r\n      <input type=\"text\" id=\"coach\" class=\"form-control\" name=\"coach\" required placeholder=\"Coach\"\r\n      pattern=\"[A-Z]{1}[a-z].{0,}\" [(ngModel)]=\"plan.coach\" #coach=\"ngModel\">\r\n      <div [hidden]=\"coach.valid || coach.pristine\"\r\n             class=\"alert alert-danger\">\r\n             <div class=\"ui negative message\">\r\n                <div class=\"header\">\r\n                    Coach name should be uppercase!\r\n                </div>\r\n            </div>\r\n          </div>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Content</label>\r\n      <input type=\"text\" name=\"content\" required placeholder=\"Training plan's content\" ngModel>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Type of training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" [disabled]=\"addPlanForm.invalid\" class=\"ui submit large blue button right floated\">Submit</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -80,17 +80,17 @@ var AddPlanComponent = /** @class */ (function () {
         var formInput = Object.assign({}, form.value);
         var plan = {
             title: formInput.title,
-            time: "Start: " + formInput.start + " Last: " + formInput.duration + " On: " + formInput.week,
-            coach: formInput.coach,
+            time: "Start at: " + formInput.start + "  Duration: " + formInput.duration + " hour  On: " + formInput.week,
+            coach: "Coach:  " + formInput.coach,
             content: formInput.content,
             type: formInput.type,
         };
         this.planService.postPlan(plan)
             .subscribe(function (data) {
-            console.log('posting new data');
+            //   console.log('posting new data');
             form.reset();
             _this.newPlan = data;
-            console.log('new data posted');
+            //   console.log('new data posted');
         });
     };
     AddPlanComponent = __decorate([
@@ -126,7 +126,7 @@ module.exports = ".add-user-container {\r\n    max-width: 500px;\r\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"add-user-container\">\n    <form class=\"ui big form\" #addUserForm=\"ngForm\" (ngSubmit)=\"onSubmit(addUserForm)\">\n      <div class=\"field\">\n      <label>Username</label>\n      <input type=\"text\" required name=\"username\" placeholder=\"Enter your username\" ngModel>\n    </div>\n    <div class=\"field\">\n      <label>Password</label>\n      <input type=\"password\" required name=\"password\" placeholder=\"Enter your password\" ngModel>\n    </div>\n    \n    <button type=\"submit\" class=\"ui primary button float right floated\"\n           [disabled]=\"addUserForm.invalid\">Sign Up</button>\n    </form>\n    </div>\n    "
+module.exports = "<div class=\"add-user-container\">\n\n    <div class=\"ui icon message\" *ngIf=\"newUser\">\n        <i class=\"notched check green icon\"></i>\n        <i class=\"close icon\" (click)=\"newUser = null\"></i>\n        <div class=\"content\">\n          <div class=\"header\">\n            New user can log in now!\n          </div>\n          <p>Username: {{newUser.username}}</p>\n        </div>\n      </div>\n\n    <form class=\"ui big form\" #addUserForm=\"ngForm\" (ngSubmit)=\"onSubmit(addUserForm)\">\n      <div class=\"field\">\n      <label>Username</label>\n      <input id=\"username\" type=\"text\" class=\"form-control\" required placeholder=\"Enter your username\"\n       pattern=\"[a-z]{4}[0-9]{3}\" [(ngModel)]=\"user.username\" name=\"username\" #username=\"ngModel\">\n       <div [hidden]=\"username.valid || username.pristine\"\n      class=\"alert alert-danger\">\n          The sign up pattern must be like eg.ffff222 \n    </div>\n    </div>\n    <div class=\"field\">\n      <label>Password</label>\n      <input id=\"password\" type=\"password\" class=\"form-control\" required name=\"password\" placeholder=\"Enter your password\"\n    minlength=\"6\" [(ngModel)]=\"user.password\" #password=\"ngModel\">\n    <div [hidden]=\"password.valid || password.pristine\"\n    class=\"alert alert-danger\">\n        The password must be at least 6 words! \n  </div>\n    </div>\n    \n    <button type=\"submit\" class=\"ui primary button float right floated\"\n           [disabled]=\"addUserForm.invalid\">Sign Up</button>\n    </form>\n    </div>\n    "
 
 /***/ }),
 
@@ -171,12 +171,16 @@ var AddUserComponent = /** @class */ (function () {
         this.planService.postUser(user)
             .subscribe(function (data) {
             console.log('posting new data');
-            console.log(data);
-            console.log(data.password);
-            console.log(user);
+            //    console.log(data);
+            //    console.log(data.password);
+            //    console.log(user);
             form.reset();
             _this.newUser = data;
-            console.log('new data posted');
+            //    console.log('new data posted');
+        }, function (err) {
+            if (err.status === 409) {
+                window.alert('This user is already registered.');
+            }
         });
     };
     AddUserComponent = __decorate([
@@ -272,7 +276,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div style=\"text-align:center\">\r\n  <h1>\r\n    Welcome to {{ title }}!\r\n  </h1>\r\n  <nav>\r\n    <a routerLink=\"register\">Register your first account</a>\r\n    <a routerLink=\"login\">  Sign in</a>\r\n  </nav> -->\r\n<app-menu-bar></app-menu-bar>\r\n<router-outlet></router-outlet>\r\n\r\n"
+module.exports = "<!-- <div style=\"text-align:center\">\r\n  <h1>\r\n    Welcome to {{ title }}!\r\n  </h1>\r\n  <nav>\r\n    <a routerLink=\"register\">Register your first account</a>\r\n    <a routerLink=\"login\">  Sign in</a>\r\n  </nav> -->\r\n<app-menu-bar></app-menu-bar>\r\n<div class=\"ui visible message\">\r\n    <a class=\"ui tag label\">Type A: Slim</a>\r\n<a class=\"ui red tag label\">Type B: Mucsle</a>\r\n<a class=\"ui teal tag label\">Type C: Fitness</a>\r\n  </div>\r\n<router-outlet></router-outlet>\r\n\r\n"
 
 /***/ }),
 
@@ -501,8 +505,8 @@ var AuthenticateService = /** @class */ (function () {
         };
     };
     AuthenticateService.prototype.post = function (user) {
-        console.log('posting');
-        console.log(user);
+        // console.log('posting');
+        // console.log(user);
         return this.http.post(this.loginUrl, user);
     };
     AuthenticateService.prototype.setToken = function (token) {
@@ -519,7 +523,7 @@ var AuthenticateService = /** @class */ (function () {
     };
     AuthenticateService.prototype.logOut = function () {
         localStorage.removeItem(this.storageKey);
-        console.log(this.storageKey);
+        // console.log(this.storageKey);
         this.router.navigate(['/login']);
     };
     AuthenticateService = __decorate([
@@ -554,7 +558,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n        {{customer.firstName}} {{customer.lastName}}\r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <ng-content select=\"[buttons]\"></ng-content>\r\n  </div>\r\n  </div>\r\n"
+module.exports = "\r\n<div class=\"ui cards\">\r\n  <div class=\"card\">\r\n    <div class=\"content\">\r\n     \r\n      <div class=\"header\">\r\n     Type:  {{customer.type}} -- {{customer.firstName}} {{customer.lastName}} \r\n      </div>\r\n      <div class=\"meta\">\r\n        {{customer.phone}}\r\n      </div>\r\n      <div class=\"description\">\r\n        {{customer.email}}\r\n      </div>\r\n    </div>\r\n    <ng-content select=\"[buttons]\"></ng-content>\r\n  </div>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -626,7 +630,7 @@ module.exports = ".container {\r\n  margin-top: 50px;\r\n}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\">\r\n        <div class=\"extra content\" buttons>\r\n            <div class=\"ui three buttons\">\r\n            <button class=\"ui basic green button\">Approve</button>\r\n            <a routerLink=\"/login\"><button class=\"ui basic blue button\">Modify</button></a>\r\n            <button class=\"ui basic red button\" (click)=\"deleteCustomer(customer._id)\">Delete</button>\r\n            </div>\r\n         </div>\r\n    </app-customer-item>\r\n    \r\n  </div>\r\n</div>"
+module.exports = "<div class=\"ui container\">\r\n  <div class=\"ui grid\">\r\n    <app-customer-item *ngFor=\"let customer of customers | async\" [customer]=\"customer\">\r\n        <div class=\"extra content\" buttons>\r\n            <div class=\"ui three buttons\">\r\n            <button class=\"ui basic green button\">Approve</button>\r\n            <button class=\"ui basic blue button\">Modify</button>\r\n            <button class=\"ui basic red button\" (click)=\"deleteCustomer(customer._id)\">Delete</button>\r\n            </div>\r\n         </div>\r\n    </app-customer-item>\r\n    \r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -665,13 +669,12 @@ var CustomerListComponent = /** @class */ (function () {
     };
     CustomerListComponent.prototype.deleteCustomer = function (id) {
         var _this = this;
-        console.log('customer id: ' + id);
+        // console.log('customer id: ' + id);
+        window.alert('Are you want to kick out this customer?');
         // this.customerService.deleteCustomer(id).subscribe();
         this.customerService.deleteCustomer(id).subscribe(function (data) {
-            console.log('esdf');
             _this.getCustomers();
         });
-        console.log('blabla');
     };
     CustomerListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -734,7 +737,7 @@ var CustomerService = /** @class */ (function () {
     };
     CustomerService.prototype.deleteCustomer = function (id) {
         var url = this.uri + "/" + id;
-        console.log(url);
+        // console.log(url);
         return this.http.delete(url, this.authenticate.getAuthorizationOptions());
     };
     CustomerService = __decorate([
@@ -831,7 +834,7 @@ module.exports = ".login-container {\r\n    max-width: 500px;\r\n    margin: 50p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-container\">\r\n  <form class=\"ui big form\" #loginForm=\"ngForm\" (ngSubmit)=\"onLogin(loginForm)\">\r\n    <div class=\"field\">\r\n    <label>Username</label>\r\n    <input type=\"text\" required name=\"username\" placeholder=\"Enter your username\" ngModel>\r\n  </div>\r\n  <div class=\"field\">\r\n    <label>Password</label>\r\n    <input type=\"password\" required name=\"password\" placeholder=\"Enter your password\" ngModel>\r\n  </div>\r\n  \r\n  <button type=\"submit\" class=\"ui primary button float right floated\"\r\n         [disabled]=\"loginForm.invalid\">Login</button>\r\n  </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"login-container\">\r\n  <form class=\"ui big form\" #loginForm=\"ngForm\" (ngSubmit)=\"onLogin(loginForm)\">\r\n    <div class=\"field\">\r\n    <label>Username</label>\r\n    <input id=\"username\" type=\"text\" class=\"form-control\" required name=\"username\" placeholder=\"Enter your username\"\r\n    pattern=\"[a-z]{4}[0-9]{3}\" [(ngModel)]=\"user.username\" #username=\"ngModel\">\r\n    <div [hidden]=\"username.valid || username.pristine\"\r\n    class=\"alert alert-danger\">\r\n        The sign up pattern must be like eg.ffff222 \r\n  </div>\r\n  </div>\r\n  <div class=\"field\">\r\n    <label>Password</label>\r\n    <input id=\"password\" type=\"password\" class=\"form-control\" required name=\"password\" placeholder=\"Enter your password\"\r\n    minlength=\"6\" [(ngModel)]=\"user.password\" #password=\"ngModel\">\r\n    <div [hidden]=\"password.valid || password.pristine\"\r\n    class=\"alert alert-danger\">\r\n        The password must be at least 6 words! \r\n  </div>\r\n  </div>\r\n  \r\n  <button type=\"submit\" class=\"ui primary button float right floated\"\r\n         [disabled]=\"loginForm.invalid\">Login</button>\r\n  </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -864,6 +867,7 @@ var LoginComponent = /** @class */ (function () {
     function LoginComponent(authenticate, router) {
         this.authenticate = authenticate;
         this.router = router;
+        this.user = {};
     }
     LoginComponent.prototype.ngOnInit = function () {
         if (this.authenticate.isLoggedIn()) {
@@ -873,21 +877,19 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.onLogin = function (form) {
         var _this = this;
         var input = form.value;
-        console.log(input);
+        //  console.log(input);
         var payload = {
             username: input.username,
             password: input.password
         };
-        console.log('onSubmit');
         this.authenticate.post(payload)
             .subscribe(function (data) {
-            console.log('subscribing');
-            console.log(data);
+            //   console.log(data);
             _this.authenticate.setToken(data.token);
-            console.log(data.token);
+            //   console.log(data.token);
             _this.router.navigate(['/customers']);
         }, function (err) {
-            window.alert('Incorrect Login details');
+            window.alert('Login failed! Please check your username or password');
             console.log(err);
         });
     };
@@ -925,7 +927,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Customer Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Customer Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"header item\">\r\n      <a routerLink=\"../plans\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          View Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    <a routerLink=\"../add-plan\">\r\n      <button class=\"ui basic button\" *ngIf=\"authenticate.isLoggedIn()\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          Add Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    </div>\r\n    <div class=\"header item\">\r\n      <a routerLink=\"../add-user\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          Add User\r\n        </i>\r\n      </button>\r\n      </a>\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
+module.exports = "<div class=\"ui menu header\">\r\n  <div class=\"ui container\">\r\n    <div class=\"item\">\r\n      <a routerLink=\"../customers\" aria-label=\"Gym Management Dashboard\">\r\n        <i class=\"icon users large blue\" aria-hidden=\"true\"></i>\r\n      </a>\r\n    </div>\r\n      <div class=\"header item\">\r\n        <h1>Gym Management Dashboard</h1>\r\n      </div>\r\n      <div class=\"item\" *ngIf=\"authenticate.isLoggedOut()\">\r\n        <a routerLink=\"../register\">\r\n        <button class=\"ui basic button\">\r\n          <i class=\"add user icon\" aria-hideen=\"true\">\r\n            Sign Up\r\n          </i>\r\n        </button>\r\n        </a>\r\n        <!-- <div class=\"item\"> -->\r\n          <a routerLink=\"../login\">\r\n          <button class=\"ui basic button\">\r\n            <i class=\"add user icon\" aria-hideen=\"true\">\r\n              Sign In\r\n            </i>\r\n          </button>\r\n          </a>\r\n      <!-- </div> -->\r\n    </div>\r\n    <div class=\"header item\">\r\n      <a routerLink=\"../plans\">\r\n      <button class=\"ui basic button\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          View Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    <a routerLink=\"../add-plan\">\r\n      <button class=\"ui basic button\" *ngIf=\"authenticate.isLoggedIn()\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          Add Plan\r\n        </i>\r\n      </button>\r\n    </a>\r\n    </div>\r\n    <div class=\"header item\">\r\n      <a routerLink=\"../add-user\">\r\n      <button class=\"ui basic button\" *ngIf=\"authenticate.isLoggedIn()\">\r\n        <i class=\"user circle outline icon\" aria-hidden=\"true\">\r\n          Add User\r\n        </i>\r\n      </button>\r\n      </a>\r\n    </div>\r\n    <div class=\"right menu\" *ngIf=\"authenticate.isLoggedIn()\">\r\n      <button class=\"ui primary button logout\" (click)=\"logout()\">logout</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n\r\n"
 
 /***/ }),
 
@@ -994,7 +996,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"ui cards\">\r\n    <div class=\"card\">\r\n      <div class=\"content\">\r\n       \r\n        <div class=\"header\">\r\n          {{plan.title}}\r\n        </div>\r\n        <div class=\"meta\">\r\n          {{plan.time}}\r\n        </div>\r\n        <div class=\"description\">\r\n          {{plan.content}}\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"extra content\">\r\n        <div class=\"ui three buttons\">\r\n          <button class=\"ui basic green button\">Approve</button>\r\n          <button class=\"ui basic blue button\">Modify</button>\r\n          <button class=\"ui basic red button\">Decline</button>\r\n        </div>\r\n      </div> -->\r\n    </div>\r\n    </div>"
+module.exports = "\r\n<div class=\"ui cards\">\r\n    <div class=\"card\">\r\n      <div class=\"content\">\r\n        <div class=\"header\">\r\n          Type: {{plan.type}} -- {{plan.title}}\r\n        </div>\r\n        <div class=\"meta\">\r\n          {{plan.time}}\r\n        </div>\r\n        <div class=\"description\">\r\n          {{plan.content}}\r\n        </div>\r\n        <div class=\"extra\">\r\n          {{plan.coach}}\r\n        </div>\r\n      </div>\r\n      <!-- <div class=\"extra content\">\r\n        <div class=\"ui three buttons\">\r\n          <button class=\"ui basic green button\">Approve</button>\r\n          <button class=\"ui basic blue button\">Modify</button>\r\n          <button class=\"ui basic red button\">Decline</button>\r\n        </div>\r\n      </div> -->\r\n    </div>\r\n    </div>"
 
 /***/ }),
 
@@ -1197,7 +1199,7 @@ module.exports = ".register-container {\r\n    max-width: 500px;\r\n    margin: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"register-container\">\r\n\r\n    <div class=\"ui icon message\" *ngIf=\"newCustomer\">\r\n        <i class=\"notched check green icon\"></i>\r\n        <i class=\"close icon\" (click)=\"newCustomer = null\"></i>\r\n        <div class=\"content\">\r\n          <div class=\"header\">\r\n            New customer registered!\r\n          </div>\r\n          <p>Email: {{newCustomer.email}}</p>\r\n        </div>\r\n      </div>\r\n\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input type=\"text\" required name=\"firstName\" placeholder=\"First Name\" ngModel>\r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input type=\"text\" required name=\"lastName\" placeholder=\"Last Name\" ngModel>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label for=\"phone\">Phone</label>\r\n      <input id=\"phone\" type=\"number\" class=\"form-control\" required pattern=\"[0-9]{10}\" placeholder=\"Phone\" [(ngModel)]=\"customer.phone\" name=\"phone\" #phone=\"ngModel\">\r\n      <div [hidden]=\"phone.valid || phone.pristine\"\r\n      class=\"alert alert-danger\">\r\n          Phone number must be 10 digits.\r\n    </div>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label for=\"email\">Email</label>\r\n      <input id=\"email\" type=\"email\" class=\"form-control\" required name=\"email\"\r\n       pattern=\"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\"\r\n       placeholder=\"Email\" [(ngModel)]=\"customer.email\" #email=\"ngModel\">\r\n       <div [hidden]=\"email.valid || email.pristine\"\r\n       class=\"alert alert-danger\">\r\n           Ops!It seems not a good email!\r\n     </div>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Interested training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\"\r\n    [disabled]=\"registerForm.invalid\">Register</button>\r\n  </form>\r\n</div>\r\n<!-- <div>\r\n  <form (ngSubmit)=\"onSubmit()\" #registerForm=\"ngForm\" >\r\n    <div>\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" pattern=\"[a-z]{4}\" required [(ngModel)]=\"customer.firstName\" name=\"firstName\" #firstName=\"ngModel\">\r\n      <div [hidden]=\"firstName.valid || firstName.pristine\" class=\"alert alert-danger\">\r\n      SDFSADFLADFSADFSFASDFSD\r\n      </div>\r\n    </div>\r\n\r\n    <button type=\"submit\" class=\"ui primary button float right floated\"\r\n    [disabled]=\"registerForm.invalid\">Register</button>\r\n  </form>\r\n\r\n\r\n</div> -->"
+module.exports = "<div class=\"register-container\">\r\n\r\n    <div class=\"ui icon message\" *ngIf=\"newCustomer\">\r\n        <i class=\"notched check green icon\"></i>\r\n        <i class=\"close icon\" (click)=\"newCustomer = null\"></i>\r\n        <div class=\"content\">\r\n          <div class=\"header\">\r\n            New customer registered!\r\n          </div>\r\n          <p>Email: {{newCustomer.email}}</p>\r\n        </div>\r\n      </div>\r\n\r\n  <form class=\"ui big form\" #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\r\n    <div class=\"field\">\r\n      <label>First Name</label>\r\n      <input id=\"firstName\" type=\"text\" class=\"form-control\" name=\"firstName\" required pattern=\"[A-Z]{1}[a-z].{0,}\"\r\n       placeholder=\"First Name\" [(ngModel)]=\"customer.firstName\" #firstName=\"ngModel\">\r\n      <div [hidden]=\"firstName.valid || firstName.pristine\"\r\n      class=\"alert alert-danger\">\r\n          The first word must be uppercase!\r\n    </div>\r\n    \r\n    </div>\r\n    <div class=\"field\">\r\n      <label>Last Name</label>\r\n      <input id=\"lastName\" type=\"text\" class=\"form-control\" name=\"lastName\" required pattern=\"[A-Z]{1}[a-z].{0,}\" \r\n      placeholder=\"Last Name\" [(ngModel)]=\"customer.lastName\" #lastName=\"ngModel\">\r\n      <div [hidden]=\"lastName.valid || lastName.pristine\"\r\n      class=\"alert alert-danger\">\r\n          The first word must be uppercase!\r\n    </div>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label for=\"phone\">Phone</label>\r\n      <input id=\"phone\" type=\"number\" class=\"form-control\" required pattern=\"[0-9]{10}\" placeholder=\"Phone\" [(ngModel)]=\"customer.phone\" name=\"phone\" #phone=\"ngModel\">\r\n      <div [hidden]=\"phone.valid || phone.pristine\"\r\n      class=\"alert alert-danger\">\r\n          Phone number must be 10 digits.\r\n    </div>\r\n    </div>\r\n\r\n    <div class=\"field\">\r\n      <label for=\"email\">Email</label>\r\n      <input id=\"email\" type=\"email\" class=\"form-control\" required name=\"email\"\r\n       pattern=\"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\"\r\n       placeholder=\"Email\" [(ngModel)]=\"customer.email\" #email=\"ngModel\">\r\n       <div [hidden]=\"email.valid || email.pristine\"\r\n       class=\"alert alert-danger\">\r\n           Ops! Missing \"@\" or \".com\", please enter a valid email.\r\n     </div>\r\n    </div>\r\n    <div class=\"inline fields\">\r\n        <label>Interested training plan:</label>\r\n          <input type=\"radio\" required name=\"type\" value=\"A\" ngModel> A-Slim<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"B\" ngModel> B-Muscle<br>\r\n          <input type=\"radio\" required name=\"type\" value=\"C\" ngModel> C-Fitness<br>\r\n    </div>\r\n    <button type=\"submit\" class=\"ui primary button float right floated\"\r\n    [disabled]=\"registerForm.invalid\">Register</button>\r\n  </form>\r\n</div>\r\n<!-- <div>\r\n  <form (ngSubmit)=\"onSubmit()\" #registerForm=\"ngForm\" >\r\n    <div>\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" pattern=\"[a-z]{4}\" required [(ngModel)]=\"customer.firstName\" name=\"firstName\" #firstName=\"ngModel\">\r\n      <div [hidden]=\"firstName.valid || firstName.pristine\" class=\"alert alert-danger\">\r\n      SDFSADFLADFSADFSFASDFSD\r\n      </div>\r\n    </div>\r\n\r\n    <button type=\"submit\" class=\"ui primary button float right floated\"\r\n    [disabled]=\"registerForm.invalid\">Register</button>\r\n  </form>\r\n\r\n\r\n</div> -->"
 
 /***/ }),
 
@@ -1243,11 +1245,11 @@ var RegisterComponent = /** @class */ (function () {
         };
         this.customerService.postCustomer(customer)
             .subscribe(function (data) {
-            console.log(data);
-            console.log(data.email);
+            //   console.log(data);
+            //   console.log(data.email);
             form.reset();
             _this.newCustomer = data;
-            console.log('new data posted');
+            //  console.log('new data posted');
         });
     };
     RegisterComponent = __decorate([

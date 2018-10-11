@@ -47,7 +47,12 @@ app.use(checkJwt({ secret: process.env.JWT_SECRET })
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         console.log('no token');
-        res.status(401).send({ error: err.message});
+        res.status(401).send({ error: err.message}).catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
     }
 });
 
@@ -55,10 +60,11 @@ app.use((err, req, res, next) => {
 app.post('/api/add-user', (req, res) => {
     const user = req.body;
     const password = req.body.password;
+    const username = req.body.username;
     const usersCollection = database.collection('users');
-        console.log(password);
-        console.log(user);
-        console.log(req.body.Username);
+    //    console.log(password);
+    //    console.log(user);
+    //    console.log(req.body.username);
         const hash = bcrypt.hashSync(password, 10, (err, hash) =>{
             if (err) {
                 return res.status(500).json({ error: 'Error when hashing'});
@@ -67,6 +73,33 @@ app.post('/api/add-user', (req, res) => {
 
         req.body.password = hash;
       
+        // usersCollection.find({}).toArray((err, docs) => {
+        //     if (err){
+        //         console.log(err);
+        //         return res.status(404).json({ error: 'error' })
+        //     }
+        //     console.log(docs);
+            
+        //     docs.forEach((item) => {
+        //         console.log(item.username);
+        //         if ( item.username == res.body.username ){
+        //             return res.status(409).json({
+        //                 message: 'user exists'
+        //               });
+        //         } else {
+        //             usersCollection.insertOne(user, (err, result) => {
+        //                 if (err) {
+        //                     console.log(err);
+        //                     return res.status(500).json({ error: 'Error when inserting new record.'});
+        //                 } else {
+        //                    const newUser = result.ops[0];
+        //                    return res.status(201).json(newUser);
+        //                 }
+        //             })
+        //         }
+        //     }) 
+
+        // })
         usersCollection.insertOne(user, (err, result) => {
             if (err) {
                 console.log(err);
@@ -98,7 +131,7 @@ app.post('/api/login', (req, res) => {
         }
         
         if(!result) {
-            return res.status(401).json({
+            return res.status(404).json({
                 error: 'user not found',
                 message: "User not found"
             })

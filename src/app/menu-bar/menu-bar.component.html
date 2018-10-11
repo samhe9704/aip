@@ -1,12 +1,12 @@
 <div class="ui menu header">
   <div class="ui container">
     <div class="item">
-      <a routerLink="../customers" aria-label="Customer Dashboard">
+      <a routerLink="../customers" aria-label="Gym Management Dashboard">
         <i class="icon users large blue" aria-hidden="true"></i>
       </a>
     </div>
       <div class="header item">
-        <h1>Customer Dashboard</h1>
+        <h1>Gym Management Dashboard</h1>
       </div>
       <div class="item" *ngIf="authenticate.isLoggedOut()">
         <a routerLink="../register">
@@ -44,7 +44,7 @@
     </div>
     <div class="header item">
       <a routerLink="../add-user">
-      <button class="ui basic button">
+      <button class="ui basic button" *ngIf="authenticate.isLoggedIn()">
         <i class="user circle outline icon" aria-hidden="true">
           Add User
         </i>

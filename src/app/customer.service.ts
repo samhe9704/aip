@@ -37,7 +37,7 @@ export class CustomerService {
 
   deleteCustomer (id: string): Observable<{}> {
     const url = `${this.uri}/${id}`;
-    console.log(url);
+   // console.log(url);
     return this.http.delete(url, this.authenticate.getAuthorizationOptions());
 
   }

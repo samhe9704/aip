@@ -14,11 +14,22 @@
   <form class="ui big form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <div class="field">
       <label>First Name</label>
-      <input type="text" required name="firstName" placeholder="First Name" ngModel>
+      <input id="firstName" type="text" class="form-control" name="firstName" required pattern="[A-Z]{1}[a-z].{0,}"
+       placeholder="First Name" [(ngModel)]="customer.firstName" #firstName="ngModel">
+      <div [hidden]="firstName.valid || firstName.pristine"
+      class="alert alert-danger">
+          The first word must be uppercase!
+    </div>
+    
     </div>
     <div class="field">
       <label>Last Name</label>
-      <input type="text" required name="lastName" placeholder="Last Name" ngModel>
+      <input id="lastName" type="text" class="form-control" name="lastName" required pattern="[A-Z]{1}[a-z].{0,}" 
+      placeholder="Last Name" [(ngModel)]="customer.lastName" #lastName="ngModel">
+      <div [hidden]="lastName.valid || lastName.pristine"
+      class="alert alert-danger">
+          The first word must be uppercase!
+    </div>
     </div>
 
     <div class="field">
@@ -37,7 +48,7 @@
        placeholder="Email" [(ngModel)]="customer.email" #email="ngModel">
        <div [hidden]="email.valid || email.pristine"
        class="alert alert-danger">
-           Ops!It seems not a good email!
+           Ops! Missing "@" or ".com", please enter a valid email.
      </div>
     </div>
     <div class="inline fields">

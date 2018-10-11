@@ -30,8 +30,8 @@ export class AuthenticateService {
   }
 
   post(user: User): Observable<Token> {
-    console.log('posting');
-    console.log(user);
+   // console.log('posting');
+   // console.log(user);
     return this.http.post<Token>(this.loginUrl, user);
   }
 
@@ -53,7 +53,7 @@ export class AuthenticateService {
 
   logOut() {
     localStorage.removeItem(this.storageKey);
-    console.log(this.storageKey);
+   // console.log(this.storageKey);
     this.router.navigate(['/login']);
   }
 }

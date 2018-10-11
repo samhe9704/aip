@@ -35,11 +35,11 @@ export class RegisterComponent implements OnInit {
 
     this.customerService.postCustomer(customer)
     .subscribe(data => {
-      console.log(data);
-      console.log(data.email);
+   //   console.log(data);
+   //   console.log(data.email);
       form.reset();
       this.newCustomer = data;
-      console.log('new data posted');
+    //  console.log('new data posted');
     });
   }
   // onSubmit() {

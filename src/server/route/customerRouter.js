@@ -21,11 +21,11 @@ router.get('/customers/:id', (req, res) => {
 
     customersCollection.findOne({_id: ObjectId(req.params.id)}, (err, docs) => {
         if (err){
-            console.log('something');
+           // console.log('something');
             res.send(err);
         }
-        console.log(req.params.id);
-        console.log(docs);
+       // console.log(req.params.id);
+      //  console.log(docs);
         res.json(docs);
     })
 })
@@ -39,8 +39,8 @@ router.post('/register', (req, res) => {
 
     customersCollection.insertOne(customer, (err, r) => {
         if (err) {
-            console.log(customer);
-            console.log(customer.firstName);
+         //   console.log(customer);
+        //    console.log(customer.firstName);
             return res.status(500).json({ error: 'Error when inserting new record.'});
         }
 

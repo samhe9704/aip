@@ -29,12 +29,16 @@ export class AddUserComponent implements OnInit {
     this.planService.postUser(user)
     .subscribe(data => {
       console.log('posting new data');
-      console.log(data);
-      console.log(data.password);
-      console.log(user);
+  //    console.log(data);
+  //    console.log(data.password);
+  //    console.log(user);
       form.reset();
       this.newUser = data;
-      console.log('new data posted');
+  //    console.log('new data posted');
+    }, err => {
+      if (err.status === 409 ) {
+        window.alert('This user is already registered.');
+      }
     });
   }
 

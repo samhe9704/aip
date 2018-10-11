@@ -1,12 +1,34 @@
 <div class="add-user-container">
+
+    <div class="ui icon message" *ngIf="newUser">
+        <i class="notched check green icon"></i>
+        <i class="close icon" (click)="newUser = null"></i>
+        <div class="content">
+          <div class="header">
+            New user can log in now!
+          </div>
+          <p>Username: {{newUser.username}}</p>
+        </div>
+      </div>
+
     <form class="ui big form" #addUserForm="ngForm" (ngSubmit)="onSubmit(addUserForm)">
       <div class="field">
       <label>Username</label>
-      <input type="text" required name="username" placeholder="Enter your username" ngModel>
+      <input id="username" type="text" class="form-control" required placeholder="Enter your username"
+       pattern="[a-z]{4}[0-9]{3}" [(ngModel)]="user.username" name="username" #username="ngModel">
+       <div [hidden]="username.valid || username.pristine"
+      class="alert alert-danger">
+          The sign up pattern must be like eg.ffff222 
+    </div>
     </div>
     <div class="field">
       <label>Password</label>
-      <input type="password" required name="password" placeholder="Enter your password" ngModel>
+      <input id="password" type="password" class="form-control" required name="password" placeholder="Enter your password"
+    minlength="6" [(ngModel)]="user.password" #password="ngModel">
+    <div [hidden]="password.valid || password.pristine"
+    class="alert alert-danger">
+        The password must be at least 6 words! 
+  </div>
     </div>
     
     <button type="submit" class="ui primary button float right floated"

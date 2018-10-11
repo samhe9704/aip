@@ -26,14 +26,12 @@ export class CustomerListComponent implements OnInit {
   }
 
   deleteCustomer(id: string) {
-    console.log('customer id: ' + id);
+   // console.log('customer id: ' + id);
+    window.alert('Are you want to kick out this customer?');
    // this.customerService.deleteCustomer(id).subscribe();
     this.customerService.deleteCustomer(id).subscribe(data => {
-      console.log('esdf');
       this.getCustomers();
     });
-
-    console.log('blabla');
   }
 
 }
