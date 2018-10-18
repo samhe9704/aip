@@ -31,6 +31,6 @@ const bcrypt = require('bcrypt');
     });
 }
 
-// seedCollection('customers', customers);
-// seedCollection('users', users);
+ seedCollection('customers', customers);
+ seedCollection('users', users);
 seedCollection('plans', plans);

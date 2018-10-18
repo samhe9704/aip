@@ -1,5 +1,5 @@
 const express = require('express');
-const ObjectId = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
 //get all the customer cards
@@ -21,11 +21,8 @@ router.get('/customers/:id', (req, res) => {
 
     customersCollection.findOne({_id: ObjectId(req.params.id)}, (err, docs) => {
         if (err){
-           // console.log('something');
             res.send(err);
         }
-       // console.log(req.params.id);
-      //  console.log(docs);
         res.json(docs);
     })
 })
@@ -37,30 +34,28 @@ router.post('/register', (req, res) => {
 
     const customersCollection = db.collection('customers');
 
-    customersCollection.insertOne(customer, (err, r) => {
+    customersCollection.insertOne(customer, (err, result) => {
         if (err) {
-         //   console.log(customer);
-        //    console.log(customer.firstName);
             return res.status(500).json({ error: 'Error when inserting new record.'});
         }
 
-        const newCustomer = r.ops[0];
+        const newCustomer = result.ops[0];
         
         return res.status(201).json(newCustomer);
     });
 });
 
-// router.delete('/customers/:id', (req, res) => {
+router.delete('/customers/:id', (req, res) => {
 
-//     const db = req.app.locals.db;
-//     const customersCollection = db.collection('customers');
+    const db = req.app.locals.db;
+    const customersCollection = db.collection('customers');
 
-//     customersCollection.deleteOne({ _id : ObjectId(req.params.id)}, (err,customer) => {
-//         if(err){
-//         res.send(err);
-//         }
-//         res.json(customer);
-//        });
-//    });
+    customersCollection.deleteOne({ _id : ObjectId(req.params.id)}, (err,customer) => {
+        if(err){
+        res.send(err);
+        }
+        res.json(customer);
+       });
+   });
 
 module.exports = router;
