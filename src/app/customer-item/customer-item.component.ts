@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { Customer } from '../customer';
+import { Customer } from '../model/customer';
 import { CustomerService } from '../customer.service';
 
 @Component({

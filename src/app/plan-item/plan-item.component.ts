@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { Plan } from '../plan';
+import { Plan } from '../model/plan';
 
 @Component({
   selector: 'app-plan-item',

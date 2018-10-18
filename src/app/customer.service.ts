@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './customer';
+import { Customer } from './model/customer';
 
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CustomerService {
-  uri = '/api/customers';
+  customerUrl = '/api/customers';
   registerUrl = '/api/register';
 
     customers: Customer[];
@@ -28,7 +28,7 @@ export class CustomerService {
 
 
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.uri, this.authenticate.getAuthorizationOptions());
+    return this.http.get<Customer[]>(this.customerUrl, this.authenticate.getAuthorizationOptions());
   }
 
   postCustomer(customer: Customer): Observable<Customer> {
@@ -36,8 +36,8 @@ export class CustomerService {
   }
 
   deleteCustomer (id: string): Observable<{}> {
-    const url = `${this.uri}/${id}`;
-   // console.log(url);
+    const url = `${this.customerUrl}/${id}`;
+
     return this.http.delete(url, this.authenticate.getAuthorizationOptions());
 
   }

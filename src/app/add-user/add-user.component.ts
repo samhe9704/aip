@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanService } from '../plan.service';
-import { User } from '../user';
+import { User } from '../model/user';
 import { NgForm } from '@angular/forms';
-// import { Bcrypt } from 'bcrypt';
+
 
 @Component({
   selector: 'app-add-user',
@@ -28,13 +28,8 @@ export class AddUserComponent implements OnInit {
 
     this.planService.postUser(user)
     .subscribe(data => {
-      console.log('posting new data');
-  //    console.log(data);
-  //    console.log(data.password);
-  //    console.log(user);
       form.reset();
       this.newUser = data;
-  //    console.log('new data posted');
     }, err => {
       if (err.status === 409 ) {
         window.alert('This user is already registered.');

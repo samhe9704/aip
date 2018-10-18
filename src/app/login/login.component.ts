@@ -3,7 +3,7 @@ import { CustomerService } from '../customer.service';
 import { AuthenticateService } from '../authenticate.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { User } from '../user';
+import { User } from '../model/user';
 
 
 @Component({
