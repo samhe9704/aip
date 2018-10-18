@@ -8,7 +8,7 @@ import { PlanListComponent } from './plan-list/plan-list.component';
 import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
-import { AuthenticateGuard } from './authenticate.guard';
+import { AuthenticateGuard } from './service/guard/authenticate.guard';
 import { AddUserComponent } from './add-user/add-user.component';
 
 

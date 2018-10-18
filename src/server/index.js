@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-const checkJwt = require('express-jwt');
+
 const cors = require('cors');
 
 const customerRouter = require('./route/customerRouter');
@@ -39,23 +39,7 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
 
     });
 });
-// set these pages as no authentication needed
-app.use(checkJwt({ secret: process.env.JWT_SECRET })
-.unless({ path: ['/api/login','/api/register','/api/plans','/add-user', 
-                '/api/add-user', '/customers', '/login', '/register', 
-                '/plans', '/add-plan']
-          }));
-// catch the unauthorize error if the page did not authenticate
-app.use((err, req, res, next) => {
-    if (err.name === 'UnauthorizedError') {
-        res.status(401).send({ error: err.message})
-        .catch(err => {
-            res.status(500).json({
-                error: err
-            });
-        });
-    }
-});
+
 // pass to index.html
 app.get('*', (req, res) => {
     return res.sendFile(path.join(__dirname, 'public/index.html'));

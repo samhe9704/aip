@@ -2,7 +2,25 @@ const express = require('express');
 //const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const checkJwt = require('express-jwt');
 const bcrypt = require('bcrypt');
+
+// require the file which storing the configuration
+require('dotenv').config();
+
+// set these pages as no authentication needed
+router.use(checkJwt({ secret: process.env.JWT_SECRET })
+.unless({ path: ['/api/login','/api/register','/api/plans','/add-user', 
+                '/api/add-user', '/customers', '/login', '/register', 
+                '/plans', '/add-plan']
+          }));
+// catch the unauthorize error if the page did not authenticate
+router.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).send({ error: err.message})
+        
+    }
+});
 
 // add a user for log in
 router.post('/add-user', (req, res) => {

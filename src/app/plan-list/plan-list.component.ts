@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlanService } from '../plan.service';
+import { PlanService } from '../service/plan/plan.service';
 import { Plan } from '../model/plan';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanService } from '../plan.service';
+import { PlanService } from '../service/plan/plan.service';
 import { Plan } from '../model/plan';
 import { NgForm } from '@angular/forms';
 

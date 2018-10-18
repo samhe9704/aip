@@ -12,13 +12,13 @@ import { JoinMemberFormComponent } from './join-member-form/join-member-form.com
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-import { CustomerService } from './customer.service';
-import { AuthenticateService } from './authenticate.service';
-import { PlanService } from './plan.service';
+import { CustomerService } from './service/customer/customer.service';
+import { AuthenticateService } from './service/authenticate/authenticate.service';
+import { PlanService } from './service/plan/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
-import { AuthenticateGuard } from './authenticate.guard';
+import { AuthenticateGuard } from './service/guard/authenticate.guard';
 import { AddUserComponent } from './add-user/add-user.component';
 
 

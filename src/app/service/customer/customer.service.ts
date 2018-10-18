@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Customer } from './model/customer';
+import { Customer } from '../../model/customer';
 
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { AuthenticateService } from './authenticate.service';
+import { AuthenticateService } from '../authenticate/authenticate.service';
 import { map, catchError } from 'rxjs/operators';
 
 

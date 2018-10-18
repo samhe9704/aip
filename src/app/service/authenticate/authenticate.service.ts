@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { User } from './model/user';
-import { Token } from './model/token';
+import { User } from '../../model/user';
+import { Token } from '../../model/token';
 
 
 @Injectable({

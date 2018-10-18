@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { Customer } from '../model/customer';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../service/customer/customer.service';
 
 @Component({
   selector: 'app-customer-item',
