@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { PlanService } from '../service/plan/plan.service';
 import { Plan } from '../model/plan';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-plan',
@@ -11,32 +12,31 @@ import { NgForm } from '@angular/forms';
 export class AddPlanComponent implements OnInit {
 
   constructor(private planService: PlanService) { }
-
+  // give newPlan a type of Plan
   newPlan: Plan;
+  // give plan a type of Plan which can contains attributes
   plan: Plan = {};
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm) {
 
-      const formInput = Object.assign({}, form.value);
+    const formInput = Object.assign({}, form.value);
+    // set the form value to each field
+    const plan: Plan = {
+      title: formInput.title,
+      time: `Start at: ${formInput.start}  Duration: ${formInput.duration} hour  On: ${formInput.week}`,
+      coach: `Coach:  ${formInput.coach}`,
+      content: formInput.content,
+      type: formInput.type,
+    };
 
-      const plan: Plan = {
-        title: formInput.title,
-        time: `Start at: ${formInput.start}  Duration: ${formInput.duration} hour  On: ${formInput.week}`,
-        coach: `Coach:  ${formInput.coach}`,
-        content: formInput.content,
-        type: formInput.type,
-      };
-
-      this.planService.postPlan(plan)
-      .subscribe(data => {
-     //   console.log('posting new data');
-        form.reset();
-        this.newPlan = data;
-     //   console.log('new data posted');
-      });
-    }
-
+    this.planService.postPlan(plan)
+    .subscribe(data => {
+      // reset the form
+      form.reset();
+      // push the value in data to newPlan
+      this.newPlan = data;
+    });
+  }
 }

@@ -15,12 +15,13 @@ export class AuthenticateGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      // check if the user is loggedin
     if (this.authenticateService.isLoggedIn()) {
       return true;
     } else {
+      // if a wrong url inserted, go back to home page
       this.router.navigate(['/plans']);
       return false;
     }
-
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
+
 import { Customer } from '../model/customer';
-import { CustomerService } from '../service/customer/customer.service';
+
 
 @Component({
   selector: 'app-customer-item',
@@ -11,11 +12,9 @@ export class CustomerItemComponent implements OnInit {
 
   @Input() customer: Customer;
   @HostBinding('class') columnClass = 'four wide column';
-  constructor(/*private customers: CustomerService*/) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
-  // this.customerService.deleteCustomer(customer.id).subscribe();
 
 }

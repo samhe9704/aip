@@ -1,5 +1,4 @@
 <div class="register-container">
-
     <div class="ui icon message" *ngIf="newCustomer">
         <i class="notched check green icon"></i>
         <i class="close icon" (click)="newCustomer = null"></i>
@@ -9,9 +8,9 @@
           </div>
           <p>Email: {{newCustomer.email}}</p>
         </div>
-      </div>
+    </div>
 
-  <form class="ui big form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+<form class="ui big form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <div class="field">
       <label>First Name</label>
       <input id="firstName" type="text" class="form-control" name="firstName" required pattern="[A-Z]{1}[a-z].{0,}"
@@ -19,9 +18,9 @@
       <div [hidden]="firstName.valid || firstName.pristine"
       class="alert alert-danger">
           The first word must be uppercase!
+      </div>
     </div>
-    
-    </div>
+
     <div class="field">
       <label>Last Name</label>
       <input id="lastName" type="text" class="form-control" name="lastName" required pattern="[A-Z]{1}[a-z].{0,}" 
@@ -29,7 +28,7 @@
       <div [hidden]="lastName.valid || lastName.pristine"
       class="alert alert-danger">
           The first word must be uppercase!
-    </div>
+      </div>
     </div>
 
     <div class="field">
@@ -38,7 +37,7 @@
       <div [hidden]="phone.valid || phone.pristine"
       class="alert alert-danger">
           Phone number must be 10 digits.
-    </div>
+      </div>
     </div>
 
     <div class="field">
@@ -49,8 +48,9 @@
        <div [hidden]="email.valid || email.pristine"
        class="alert alert-danger">
            Ops! Missing "@" or ".com", please enter a valid email.
-     </div>
+      </div>
     </div>
+    
     <div class="inline fields">
         <label>Interested training plan:</label>
           <input type="radio" required name="type" value="A" ngModel> A-Slim<br>
@@ -61,18 +61,3 @@
     [disabled]="registerForm.invalid">Register</button>
   </form>
 </div>
-<!-- <div>
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" >
-    <div>
-      <input type="text" class="form-control" id="name" pattern="[a-z]{4}" required [(ngModel)]="customer.firstName" name="firstName" #firstName="ngModel">
-      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
-      SDFSADFLADFSADFSFASDFSD
-      </div>
-    </div>
-
-    <button type="submit" class="ui primary button float right floated"
-    [disabled]="registerForm.invalid">Register</button>
-  </form>
-
-
-</div> -->

@@ -5,7 +5,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { PlanListComponent } from './plan-list/plan-list.component';
-import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
 import { AuthenticateGuard } from './service/guard/authenticate.guard';

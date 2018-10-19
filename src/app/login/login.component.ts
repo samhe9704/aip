@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../service/customer/customer.service';
-import { AuthenticateService } from '../service/authenticate/authenticate.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
 import { User } from '../model/user';
+import { AuthenticateService } from '../service/authenticate/authenticate.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { User } from '../model/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  // give user a type of User
   user: User = {};
 
   constructor(private authenticate: AuthenticateService,
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if ( this.authenticate.isLoggedIn()) {
+      // prevent duplicate login
       this.router.navigate(['./cusomers']);
     }
   }
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
   onLogin(form: NgForm) {
     const input = form.value;
 
-    //  console.log(input);
     const payload = {
       username: input.username,
       password: input.password
@@ -35,9 +35,8 @@ export class LoginComponent implements OnInit {
 
     this.authenticate.post(payload)
     .subscribe(data => {
-   //   console.log(data);
+      // create the token
       this.authenticate.setToken(data.token);
-   //   console.log(data.token);
 
       this.router.navigate(['/customers']);
     }, (err) => {
@@ -45,5 +44,4 @@ export class LoginComponent implements OnInit {
       console.log(err);
     });
   }
-
 }

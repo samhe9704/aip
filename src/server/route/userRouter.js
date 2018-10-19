@@ -17,8 +17,7 @@ router.use(checkJwt({ secret: process.env.JWT_SECRET })
 // catch the unauthorize error if the page did not authenticate
 router.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).send({ error: err.message})
-        
+        res.status(401).send({ error: err.message})  
     }
 });
 
@@ -30,25 +29,25 @@ router.post('/add-user', (req, res) => {
     const password = req.body.password;
     // connect to users collection
     const usersCollection = db.collection('users');
-        // hashing password
-        const hash = bcrypt.hashSync(password, 10, (err, hash) =>{
-            if (err) {
-                return res.status(500).json({ error: 'Error when hashing'});
-            }
-        });
-        // pass the hash result
-        req.body.password = hash;
-        // insert the user
-        usersCollection.insertOne(user, (err, result) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({ error: 'Error when inserting new record.'});
-            } else {
-                //get the first result
-               const newUser = result.ops[0];
-               return res.status(201).json(newUser);
-            }
-        })
+    // hashing password
+    const hash = bcrypt.hashSync(password, 10, (err, hash) =>{
+        if (err) {
+            return res.status(500).json({ error: 'Error when hashing'});
+        }
+    });
+    // pass the hash result
+    req.body.password = hash;
+    // insert the user
+    usersCollection.insertOne(user, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Error when inserting new record.'});
+        } else {
+            //get the first result
+            const newUser = result.ops[0];
+            return res.status(201).json(newUser);
+        }
+    })
     
     })
 

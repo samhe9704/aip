@@ -8,7 +8,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { JoinMemberFormComponent } from './join-member-form/join-member-form.component';
 import { CustomerItemComponent } from './customer-item/customer-item.component';
 import { SuiModule } from 'ng2-semantic-ui';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
@@ -20,6 +19,7 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
 import { AuthenticateGuard } from './service/guard/authenticate.guard';
 import { AddUserComponent } from './add-user/add-user.component';
+import { UserService } from './service/user/user.service';
 
 
 @NgModule({
@@ -28,7 +28,6 @@ import { AddUserComponent } from './add-user/add-user.component';
     RegisterComponent,
     LoginComponent,
     CustomerListComponent,
-    JoinMemberFormComponent,
     CustomerItemComponent,
     MenuBarComponent,
     PlanListComponent,
@@ -43,7 +42,7 @@ import { AddUserComponent } from './add-user/add-user.component';
     SuiModule,
     FormsModule
   ],
-  providers: [CustomerService, AuthenticateService, PlanService, AuthenticateGuard],
+  providers: [CustomerService, AuthenticateService, PlanService, UserService, AuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

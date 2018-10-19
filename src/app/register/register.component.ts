@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../service/customer/customer.service';
 import { NgForm } from '@angular/forms';
-import { Customer } from '../model/customer';
 
+import { Customer } from '../model/customer';
+import { CustomerService } from '../service/customer/customer.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Customer } from '../model/customer';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  // give newCustomer a type of Customer
   newCustomer: Customer;
   customer: Customer = {};
 
@@ -20,11 +20,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-
   onSubmit(form: NgForm) {
-
+    // refer to the value in the form
     const formInput = Object.assign({}, form.value);
-
+    // give the form value to each of customer attribute
     const customer: Customer = {
       firstName: formInput.firstName,
       lastName: formInput.lastName,
@@ -32,18 +31,12 @@ export class RegisterComponent implements OnInit {
       email: formInput.email,
       type: formInput.type
     };
-
+    // call the postCustomer to add customer
     this.customerService.postCustomer(customer)
     .subscribe(data => {
-   //   console.log(data);
-   //   console.log(data.email);
+      // reset the form
       form.reset();
       this.newCustomer = data;
-    //  console.log('new data posted');
     });
   }
-  // onSubmit() {
-
-  // }
-
 }

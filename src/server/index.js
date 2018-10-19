@@ -36,7 +36,6 @@ MongoClient.connect(process.env.DB_CONN, (err, client) => {
     app.locals.db = myAwesomeDB;
     //database = myAwesomeDB;
     console.log('listenning on port 4200...');
-
     });
 });
 

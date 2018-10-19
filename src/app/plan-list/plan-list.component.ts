@@ -9,11 +9,12 @@ import { Plan } from '../model/plan';
   styleUrls: ['./plan-list.component.css']
 })
 export class PlanListComponent implements OnInit {
-
+  // give plans a type of Observable<Plan[]>
   plans: Observable<Plan[]>;
 
   constructor(private planService: PlanService) { }
 
+  // retrieve all the plans from plan service
   getPlans(): void {
     this.plans = this.planService.getPlans();
   }
