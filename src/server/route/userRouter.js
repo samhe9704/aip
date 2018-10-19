@@ -63,14 +63,14 @@ router.post('/login', (req, res) => {
                 message: "login fail"
             })
         }
-        
+        // if user not found
         if(!result) {
             return res.status(404).json({
                 error: 'user not found',
                 message: "User not found"
             })
         }
-
+        // compare the hashed password
         if(!bcrypt.compareSync(user.password, result.password)) {
             return res.status(401).json({ error: 'incorrect password'});
         }
