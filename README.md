@@ -4,6 +4,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Get started!
 
+## Code Style
+
+* Reuse the code as possible as you can - Reusability
+* Write meaningful and simple comment - Clear and Clean
+* No repeat code - Avoid redundancy
+* Keep each method and function as simple as possible - Clear and Clean
+* Avoid using var to declare varable
+* Keep consistency among the project - Consistency
+* Naming of the varable, method, function, file must be easy to understand - Clear
+* The files that have similar use should put in the same folder
+
 ## Dependecies
 
 Before you start the application...
@@ -30,8 +41,8 @@ The encryption for password is set by Bcrypt, jsonwebtoken, express-jwt.
 
 ## Install
 
-* git clone this repository
-* run npm install to install all the dependencies
+* `git clone` this repository
+* run `npm install` to install all the dependencies
 
 ## Running the application
 
