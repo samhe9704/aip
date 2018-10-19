@@ -275,7 +275,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div style=\"text-align:center\">\r\n  <h1>\r\n    Welcome to {{ title }}!\r\n  </h1>\r\n  <nav>\r\n    <a routerLink=\"register\">Register your first account</a>\r\n    <a routerLink=\"login\">  Sign in</a>\r\n  </nav> -->\r\n<app-menu-bar></app-menu-bar>\r\n<div class=\"ui visible message\">\r\n    <a class=\"ui tag label\">Type A: Slim</a>\r\n<a class=\"ui red tag label\">Type B: Mucsle</a>\r\n<a class=\"ui teal tag label\">Type C: Fitness</a>\r\n  </div>\r\n<router-outlet></router-outlet>\r\n\r\n"
+module.exports = "<app-menu-bar></app-menu-bar>\r\n<router-outlet></router-outlet>\r\n\r\n"
 
 /***/ }),
 
